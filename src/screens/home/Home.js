@@ -1,70 +1,147 @@
-import React, { Component } from 'react';
+import React,{Component} from 'react';
+//import PropTypes from 'prop-types';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+//import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import Input from '@material-ui/core/Input';
+//import InputBase from '@material-ui/core/InputBase';
+//import { fade } from '@material-ui/core/styles/colorManipulator';
+import { withStyles } from '@material-ui/core/styles';
+//import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
 import './Home.css';
-import Header from '../../common/header/Header';
-//import { Link } from 'react-router-dom';
+
+const styles = theme => ({
+    root: {
+        width: '100%',
+    },
+    grow: {
+        flexGrow: 1,
+    },
+    search: {
+        position: 'relative',
+        borderRadius: '4px',
+        backgroundColor: '#c0c0c0',
+        marginLeft: 0,
+        width: '300px',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing.unit,
+            width: 'auto',
+        },
+    },
+    searchIcon: {
+        color:'black',
+        width: theme.spacing.unit * 9,
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    inputRoot: {
+        color: 'inherit',
+        width: '100%',
+    },
+    inputInput: {
+        paddingTop: theme.spacing.unit,
+        paddingRight: theme.spacing.unit,
+        paddingBottom: theme.spacing.unit,
+        paddingLeft: theme.spacing.unit * 10,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            width: 120,
+            '&:focus': {
+                width: 200,
+            },
+        },
+    },
+});
 
 class Home extends Component {
 
-    constructor() {
+    /*  constructor() {
+          super();
+          this.state = {
+              movieName: "",
+              genres: [],
+              artists: []
+          }
+      }
+  
+      movieNameChangeHandler = event => {
+          this.setState({ movieName: event.target.value });
+      }
+  
+      genreSelectHandler = event => {
+          this.setState({ genres: event.target.value });
+      }
+  
+      artistSelectHandler = event => {
+          this.setState({ artists: event.target.value });
+      }   Sample code written */
+
+
+      constructor() {
         super();
         this.url1 = "https://api.instagram.com/v1/users/self/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
-        this.url2 = "https://api.instagram.com/v1/users/self/media/recent/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
-        this.state ={
-            ownerInfo: [],
-            mediaInfo:[]
-        }
+       
     }
 
     componentWillMount() {
-        // Get owner info of accessToken
+        // Get owner info by accessToken
         let ownerData = null;
         let xhr = new XMLHttpRequest();
         let that = this;
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
                 console.log(this.responseText);
-                that.setState({
-                    
-                       ownerInfo: JSON.parse(this.responseText)
-                });
-                
                 
             }
             
         })
-        xhr.open("GET", this.url1 );
-        xhr.send(ownerData);
-    
-        // Get media info of owner of accessToken
-        let mediaData = null;
-        let xhrMediaData = new XMLHttpRequest();
-      
-        xhrMediaData.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
-                console.log(this.responseText);
-                that.setState({
-                    
-                       mediaInfo: JSON.parse(this.responseText)
-                });
-                
-                
-            }
-            
-        })
-        xhrMediaData.open("GET", this.url2 );
-        xhrMediaData.send(mediaData);
+        xhr.open("GET", this.url1);
+        xhr.setRequestHeader("Cache-Control", "no-cache");
+        xhr.send(data);
     }
 
-        
+
     render() {
-        return (	    
-            <div>
-            
-            <Header heading ="Image Viewer" text="Search" />
-            
+
+        const { classes } = this.props;
+        return (
+            <div className="app-header">
+            <div className={classes.root}>
+                <AppBar position="static">
+                    <Toolbar>
+
+                        <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                            Image Viewer
+          </Typography>
+                        <div className={classes.grow} />
+                        <div className={classes.search}>
+                            <div className={classes.searchIcon}>
+                                <SearchIcon />
+                            </div>
+                            <Input id="search-input" onChange={this.searchInputChangeHandler} />
+                        </div>
+                        
+
+                    </Toolbar>
+
+
+
+                </AppBar>
             </div>
-        )
+            </div>
+            
+        );
     }
+
+
 }
 
-export default Home;
+
+    export default withStyles(styles)(Home);

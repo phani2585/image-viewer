@@ -2,3 +2,23 @@
 .spanStyle {
     color:red;
 }
+.searchIconContainer {
+    color:blue;
+}
+.search-icon{
+    color:blue;
+}
+.app-header {
+    background-color: #263238;
+    height: 36px;
+    
+}
+
+.app-logo {
+    color: #fff;
+    font-size: 18px;
+    vertical-align: center;
+    
+}
+
+   
