@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Login from '../src/screens/login/Login';
+import Controller from '../src/common/Controller';
 
 
-ReactDOM.render(<Login/>, document.getElementById('root'));
+ReactDOM.render(<Controller/>, document.getElementById('root'));
