@@ -10,3 +10,7 @@
     vertical-align: center;
     align-items: left; /*Decide with team if necessary */
 }
+.right-text {
+    color:red;
+    float:right;
+}

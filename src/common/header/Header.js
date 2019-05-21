@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
+//import React, { Component } from 'react';
+import React from 'react';
 import './Header.css';
 
 
-class Header extends Component {
-    render() {
-        return (
-            <header className='app-header'>
-                <div className='app-logo'>
-                    Image Viewer
+const Header = function (props) {
+    return (
+        <div className="app-header app-logo">
+            {props.heading}
+            <div className="right-text">
+            {props.text}
             </div>
-            </header>
-        )
-    }
+            
+        </div>
+    )
 }
 
 export default Header;
