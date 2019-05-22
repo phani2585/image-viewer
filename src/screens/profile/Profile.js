@@ -33,7 +33,9 @@ class Profile extends Component {
         this.state = {
             ownerInfo: [],
             mediaInfo: []
-        }
+            }
+            
+        
     }
 
     componentWillMount() {
@@ -46,7 +48,7 @@ class Profile extends Component {
                 console.log(this.responseText);
                 that.setState({
 
-                    ownerInfo: JSON.parse(this.responseText)
+                    ownerInfo: JSON.parse(this.responseText).images
                 });
 
 
@@ -62,11 +64,13 @@ class Profile extends Component {
 
         xhrMediaData.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                console.log(this.responseText);
+                console.log(this.responseText.images);
                 that.setState({
 
-                    mediaInfo: JSON.parse(this.responseText)
+                    mediaInfo: JSON.parse(this.responseText).images
+                    
                 });
+                
 
 
             }
@@ -87,9 +91,9 @@ class Profile extends Component {
                 </div>
                 <div className={classes.root}>
                     <GridList cellHeight={160} className={classes.gridList} cols={3}>
-                        {Apitwohardcodeddata.map(tile => (
-                            <GridListTile key={"profile"+ tile.profile_picture} >
-                                <img src={tile.profile_picture} alt={tile.username} />
+                        {this.state.mediaInfo.map(tile => (
+                            <GridListTile key={"profile"+ tile.} >
+                                <img src={tile.user.profile_picture} alt={tile.text} />
                                
                             </GridListTile>
                         ))}
