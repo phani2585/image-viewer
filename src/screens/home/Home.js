@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 //import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,6 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 //import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import './Home.css';
+import IconButton from '@material-ui/core/IconButton';
 
 const styles = theme => ({
     root: {
@@ -18,6 +19,12 @@ const styles = theme => ({
     },
     grow: {
         flexGrow: 1,
+    },
+    button: {
+        margin: theme.spacing.unit,
+    },
+    input: {
+        display: 'none',
     },
     search: {
         position: 'relative',
@@ -31,7 +38,7 @@ const styles = theme => ({
         },
     },
     searchIcon: {
-        color:'black',
+        color: 'black',
         width: theme.spacing.unit * 9,
         height: '100%',
         position: 'absolute',
@@ -62,16 +69,15 @@ const styles = theme => ({
 
 class Home extends Component {
 
-    /*  constructor() {
-          super();
-          this.state = {
-              movieName: "",
-              genres: [],
-              artists: []
-          }
-      }
-  
-      movieNameChangeHandler = event => {
+    constructor() {
+        super();
+        this.url1 = "https://api.instagram.com/v1/users/self/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
+        this.state = {
+            ownerInfo: []
+        }
+    }
+
+    /* movieNameChangeHandler = event => {
           this.setState({ movieName: event.target.value });
       }
   
@@ -84,12 +90,6 @@ class Home extends Component {
       }   Sample code written */
 
 
-      constructor() {
-        super();
-        this.url1 = "https://api.instagram.com/v1/users/self/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
-       
-    }
-
     componentWillMount() {
         // Get owner info by accessToken
         let ownerData = null;
@@ -98,50 +98,51 @@ class Home extends Component {
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
                 console.log(this.responseText);
-                
+                that.setState({
+                    ownerInfo: JSON.parse(this.responseText)
+                });
             }
-            
+
         })
         xhr.open("GET", this.url1);
-        xhr.setRequestHeader("Cache-Control", "no-cache");
-        xhr.send(data);
+        xhr.send(ownerData);
     }
 
-
     render() {
-
         const { classes } = this.props;
+
         return (
             <div className="app-header">
-            <div className={classes.root}>
-                <AppBar position="static">
-                    <Toolbar>
+                <div className={classes.root}>
+                    <AppBar position="static">
+                        <Toolbar>
 
-                        <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                            Image Viewer
-          </Typography>
-                        <div className={classes.grow} />
-                        <div className={classes.search}>
-                            <div className={classes.searchIcon}>
-                                <SearchIcon />
+                            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                                Image Viewer
+                                    </Typography>
+                            <div className={classes.grow} />
+                            <div className={classes.search}>
+                                <div className={classes.searchIcon}>
+                                    <SearchIcon />
+                                </div>
+                                <Input id="search-input" onChange={this.searchInputChangeHandler} />
                             </div>
-                            <Input id="search-input" onChange={this.searchInputChangeHandler} />
-                        </div>
-                        
-
-                    </Toolbar>
-
-
-
-                </AppBar>
+                            <div>
+                            <IconButton>
+                        <input accept="this.state.ownerData.profile_picture" className={classes.input} id="icon-button-file" type="file" />
+                        </IconButton></div>
+                            </Toolbar>
+                            
+                    </AppBar>
+                </div>
             </div>
-            </div>
-            
-        );
+
+        )
     }
 
 
 }
 
 
-    export default withStyles(styles)(Home);
+
+export default withStyles(styles)(Home);
