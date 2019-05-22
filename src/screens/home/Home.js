@@ -12,11 +12,27 @@ import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import './Home.css';
 import IconButton from '@material-ui/core/IconButton';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import Avatar from '@material-ui/core/Avatar';
+import subheader from '@material-ui/core/CardHeader';
+import Grid from '@material-ui/core/Grid';
+import Picture from '../../common/Picture';
+
+
+
+
 
 const styles = theme => ({
     root: {
         width: '100%',
     },
+    bigAvatar: {
+        margin: 10,
+        width: 60,
+        height: 60,
+      },
     grow: {
         flexGrow: 1,
     },
@@ -72,8 +88,10 @@ class Home extends Component {
     constructor() {
         super();
         this.url1 = "https://api.instagram.com/v1/users/self/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
+        this.url2 = "https://api.instagram.com/v1/users/self/media/recent/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
         this.state = {
-            ownerInfo: []
+            ownerInfo: [],
+            mediaInfo:[]
         }
     }
 
@@ -97,21 +115,42 @@ class Home extends Component {
         let that = this;
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                console.log(this.responseText);
+               // console.log(this.responseText);
                 that.setState({
-                    ownerInfo: JSON.parse(this.responseText)
+                    ownerInfo: JSON.parse(this.responseText).data
                 });
             }
 
         })
         xhr.open("GET", this.url1);
         xhr.send(ownerData);
-    }
+    
+     // Get media info of owner of accessToken
+     let mediaData = null;
+     let xhrMediaData = new XMLHttpRequest();
+   
+     xhrMediaData.addEventListener("readystatechange", function () {
+         if (this.readyState === 4) {
+             console.log(this.responseText);
+             that.setState({
+                 
+                    mediaInfo: JSON.parse(this.responseText).user
+             });
+             
+             
+         }
+         
+     })
+     xhrMediaData.open("GET", this.url2);
+     xhrMediaData.send(mediaData);
+ }
+
 
     render() {
         const { classes } = this.props;
 
         return (
+            <div>
             <div className="app-header">
                 <div className={classes.root}>
                     <AppBar position="static">
@@ -129,12 +168,33 @@ class Home extends Component {
                             </div>
                             <div>
                             <IconButton>
-                        <input accept="this.state.ownerData.profile_picture" className={classes.input} id="icon-button-file" type="file" />
+                        
                         </IconButton></div>
                             </Toolbar>
                             
                     </AppBar>
                 </div>
+            </div>
+            <div className="cardStyle">
+                <Card>
+                    <CardHeader>
+                    <Grid container justify="center" alignItems="center">
+      <Avatar alt="Remy Sharp" src="./src/common/Picture.js" className={classes.bigAvatar} />
+    </Grid>
+                        
+                        <subheader>
+
+                        </subheader>
+                    </CardHeader>
+                    <CardContent>
+                    
+
+                        
+
+                    </CardContent>
+                </Card>
+
+            </div>
             </div>
 
         )
