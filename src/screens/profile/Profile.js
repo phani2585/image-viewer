@@ -6,9 +6,11 @@ import Header from '../../common/header/Header';
 import { withStyles } from '@material-ui/core/styles'
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 //import tileData from './tileData';
 //import Apionehardcodeddata from '../../common/Apionehardcodeddata';
-import Apitwohardcodeddata from '../../common/Apitwohardcodeddata';
+import apiData2 from '../../common/Apitwohardcodeddata';
+im
 
 const styles = theme => ({
     root: {
@@ -89,17 +91,19 @@ class Profile extends Component {
                     <span className="spanStyle">Profile Page</span>
                     <h1>Test </h1>
                 </div>
-                <div className={classes.root}>
-                    <GridList cellHeight={160} className={classes.gridList} cols={3}>
-                        {this.state.mediaInfo.map(tile => (
-                            <GridListTile key={"profile"+ tile.} >
-                                <img src={tile.user.profile_picture} alt={tile.text} />
-                               
-                            </GridListTile>
-                        ))}
-                    </GridList>
-                </div>
+            
+            <div className={classes.root}>
+                <GridList cellHeight={350} cols={4} className={classes.gridListMain}>
+                    {apiData2.map(image => (
+                        <GridListTile  key={"grid" + image.id}>
+                            <img src={image.profile_picture}  alt={image.full_name} />
+                            <GridListTileBar
+                                title={image.full_name} />
+                        </GridListTile>
+                    ))}
+                </GridList>
             </div>
+        </div>
         )
     }
 }

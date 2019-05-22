@@ -13,12 +13,18 @@ import SearchIcon from '@material-ui/icons/Search';
 import './Home.css';
 import IconButton from '@material-ui/core/IconButton';
 import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import subheader from '@material-ui/core/CardHeader';
 import Grid from '@material-ui/core/Grid';
-//import Picture from '../../common/Picture';
+import Picture from '../../common/Picture';
+import Header from '../../common/header/Header';
+
+
+import apiData1 from '../../common/Apionehardcodeddata';
+
 
 
 
@@ -28,11 +34,16 @@ const styles = theme => ({
     root: {
         width: '100%',
     },
+    paper: {
+        padding: theme.spacing.unit * 2,
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
     bigAvatar: {
         margin: 10,
         width: 60,
         height: 60,
-      },
+    },
     grow: {
         flexGrow: 1,
     },
@@ -91,7 +102,7 @@ class Home extends Component {
         this.url2 = "https://api.instagram.com/v1/users/self/media/recent/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
         this.state = {
             ownerInfo: [],
-            mediaInfo:[]
+            mediaInfo: []
         }
     }
 
@@ -115,7 +126,7 @@ class Home extends Component {
         let that = this;
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-               // console.log(this.responseText);
+                 console.log(this.responseText);
                 that.setState({
                     ownerInfo: JSON.parse(this.responseText).data
                 });
@@ -124,26 +135,26 @@ class Home extends Component {
         })
         xhr.open("GET", this.url1);
         xhr.send(ownerData);
-    
-     // Get media info of owner of accessToken
-     let mediaData = null;
-     let xhrMediaData = new XMLHttpRequest();
-   
-     xhrMediaData.addEventListener("readystatechange", function () {
-         if (this.readyState === 4) {
-             console.log(this.responseText);
-             that.setState({
-                 
+
+        // Get media info of owner of accessToken
+        let mediaData = null;
+        let xhrMediaData = new XMLHttpRequest();
+
+        xhrMediaData.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                //console.log(this.responseText);
+                that.setState({
+
                     mediaInfo: JSON.parse(this.responseText).user
-             });
-             
-             
-         }
-         
-     })
-     xhrMediaData.open("GET", this.url2);
-     xhrMediaData.send(mediaData);
- }
+                });
+
+
+            }
+
+        })
+        xhrMediaData.open("GET", this.url2);
+        xhrMediaData.send(mediaData);
+    }
 
 
     render() {
@@ -151,53 +162,70 @@ class Home extends Component {
 
         return (
             <div>
-            <div className="app-header">
-                <div className={classes.root}>
-                    <AppBar position="static">
-                        <Toolbar>
+                <div className="app-header app-logo">
+                    <Header heading="Image Viewer" />
 
-                            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                                Image Viewer
-                                    </Typography>
-                            <div className={classes.grow} />
-                            <div className={classes.search}>
-                                <div className={classes.searchIcon}>
-                                    <SearchIcon />
-                                </div>
-                                <Input id="search-input" onChange={this.searchInputChangeHandler} />
-                            </div>
-                            <div>
-                            <IconButton>
-                        
-                        </IconButton></div>
-                            </Toolbar>
-                            
-                    </AppBar>
                 </div>
+                <div>
+                    <Grid container spacing={24}>
+                        <Grid item xs={12} sm={6}>
+                            <Card className={classes.card}>
+                            <CardHeader
+                                    avatar={
+                                        <Avatar aria-label="Recipe" className={classes.bigAvatar}>
+                                
+                                          R</Avatar>} 
+                                           title="Username1"
+                                           subheader="May 23, 2019"
+                                           />
+
+                                <CardContent>
+                                <CardMedia className={classes.media}
+                                image="\image-viewer\src\assets\images\first.jpg" />
+                                <hr/>
+                                <Typography variant="caption">
+                                    Caption blah blah blah 
+                                </Typography>
+                                <Typography>
+                                    #images #description
+                                </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+
+
+                        <Grid item xs={12} sm={6}>
+
+                        <Card className={classes.card}>
+                            <CardHeader
+                                    avatar={
+                                        <Avatar aria-label="Recipe" className={classes.bigAvatar}>
+                                
+                                           P </Avatar>} 
+                                           title="Username2"
+                                           subheader="May 22, 2019"
+                                           />
+                                   
+
+                            <CardContent>
+                            <CardMedia className={classes.media}
+                            image="/static/images/cards/paella.jpg"
+                            
+                            />
+                                <Typography>
+                                    Hello
+                        </Typography>
+                            </CardContent>
+                                </Card>
+
+                    </Grid>
+                        </Grid>
+
             </div>
-            <div className="cardStyle">
-                <Card>
-                    <CardHeader>
-                    <Grid container justify="center" alignItems="center">
-      <Avatar alt="Remy Sharp" src="./src/common/Picture.js" className={classes.bigAvatar} />
-    </Grid>
-                        
-                        <subheader>
+                </div >
 
-                        </subheader>
-                    </CardHeader>
-                    <CardContent>
-                    
 
-                        
-
-                    </CardContent>
-                </Card>
-
-            </div>
-            </div>
-
-        )
+                )
     }
 
 
