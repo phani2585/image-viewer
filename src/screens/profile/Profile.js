@@ -3,8 +3,26 @@ import React, { Component } from 'react';
 //import { Link } from 'react-router-dom';
 import './Profile.css';
 import Header from '../../common/header/Header';
+import { withStyles } from '@material-ui/core/styles'
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+//import tileData from './tileData';
+//import Apionehardcodeddata from '../../common/Apionehardcodeddata';
+import Apitwohardcodeddata from '../../common/Apitwohardcodeddata';
 
-
+const styles = theme => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
+    },
+    gridList: {
+        width: 500,
+        height: 450,
+    },
+});
 
 class Profile extends Component {
 
@@ -12,9 +30,9 @@ class Profile extends Component {
         super();
         this.url1 = "https://api.instagram.com/v1/users/self/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
         this.url2 = "https://api.instagram.com/v1/users/self/media/recent/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
-        this.state ={
+        this.state = {
             ownerInfo: [],
-            mediaInfo:[]
+            mediaInfo: []
         }
     }
 
@@ -27,46 +45,60 @@ class Profile extends Component {
             if (this.readyState === 4) {
                 console.log(this.responseText);
                 that.setState({
-                    
-                       ownerInfo: JSON.parse(this.responseText)
+
+                    ownerInfo: JSON.parse(this.responseText)
                 });
-                
-                
+
+
             }
-            
+
         })
-        xhr.open("GET", this.url1 );
+        xhr.open("GET", this.url1);
         xhr.send(ownerData);
-    
+
         // Get media info of owner of accessToken
         let mediaData = null;
         let xhrMediaData = new XMLHttpRequest();
-      
+
         xhrMediaData.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
                 console.log(this.responseText);
                 that.setState({
-                    
-                       mediaInfo: JSON.parse(this.responseText)
+
+                    mediaInfo: JSON.parse(this.responseText)
                 });
-                
-                
+
+
             }
-            
+
         })
-        xhrMediaData.open("GET", this.url2 );
+        xhrMediaData.open("GET", this.url2);
         xhrMediaData.send(mediaData);
     }
 
-        render() {
-            return (
+    render() {
+        const { classes } = this.props;
+        return (
+            <div>
                 <div>
-                    <Header />
+                    <Header heading="Image Viewer"/>
                     <span className="spanStyle">Profile Page</span>
+                    <h1>Test </h1>
                 </div>
-            )
-        }
+                <div className={classes.root}>
+                    <GridList cellHeight={160} className={classes.gridList} cols={3}>
+                        {Apitwohardcodeddata.map(tile => (
+                            <GridListTile key={"profile"+ tile.profile_picture} >
+                                <img src={tile.profile_picture} alt={tile.username} />
+                               
+                            </GridListTile>
+                        ))}
+                    </GridList>
+                </div>
+            </div>
+        )
     }
+}
 
 
-    export default Profile;
+export default withStyles(styles)(Profile);

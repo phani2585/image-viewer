@@ -18,7 +18,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import subheader from '@material-ui/core/CardHeader';
 import Grid from '@material-ui/core/Grid';
-import Picture from '../../common/Picture';
+//import Picture from '../../common/Picture';
 
 
 
