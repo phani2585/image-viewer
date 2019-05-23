@@ -10,7 +10,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 //import tileData from './tileData';
 //import Apionehardcodeddata from '../../common/Apionehardcodeddata';
 import apiData2 from '../../common/Apitwo';
-im
+
 
 const styles = theme => ({
     root: {
@@ -66,7 +66,7 @@ class Profile extends Component {
 
         xhrMediaData.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                console.log(this.responseText.images);
+                console.log(this.responseText);
                 that.setState({
 
                     mediaInfo: JSON.parse(this.responseText).images

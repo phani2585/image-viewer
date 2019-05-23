@@ -13,27 +13,35 @@ import { withStyles } from '@material-ui/core/styles';
 import './Home.css';
 //import IconButton from '@material-ui/core/IconButton';
 import Card from '@material-ui/core/Card';
-//import CardMedia from '@material-ui/core/CardMedia';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
+//import CardMedia from '@material-ui/core/CardMedia';
+
 import Avatar from '@material-ui/core/Avatar';
 //import subheader from '@material-ui/core/CardHeader';
+
 import Grid from '@material-ui/core/Grid';
 import first from '../../assets/images/first.jpg';
+import second from '../../assets/images/second.jpg';
+import hearticon from '../../assets/icon/hearticon.svg';
 import Header from '../../common/header/Header';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 //import Input from '@material-ui/core/Input';
 //import PropTypes from 'prop-types';
 //import FormHelperText from '@material-ui/core/FormHelperText';
+import fifth from '../../assets/images/fifth.jpg';
 
+//import apiData2 from '../../common/Apitwo';
 
-//import apiData1 from '../../common/Apionehardcodeddata';
-import hearticon from '../../assets/icon/hearticon.svg';
-import profilepic from '../../assets/images/profilepic.jpg';
-import second from '../../assets/images/second.jpg';
+//import profilepic from '../../assets/images/profilepic.jpg';
+
 import Button from '@material-ui/core/Button';
 //import Apione from '../../common/Apione';
+//import GridList from '@material-ui/core/GridList';
+//import GridListTile from '@material-ui/core/GridListTile';
+//import tileData from './tileData';
+
 
 
 
@@ -45,11 +53,10 @@ const styles = theme => ({
     root: {
         width: '100%',
     },
-    paper: {
-        padding: theme.spacing.unit * 2,
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
+    card: {
+        maxWidth: 550,
+        
+      },
     bigAvatar: {
         margin: 10,
         width: 60,
@@ -154,10 +161,10 @@ class Home extends Component {
         
         xhrMediaData.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                //console.log(this.responseText);
+                console.log(this.responseText);
                 that.setState({
 
-                    mediaInfo: JSON.parse(this.responseText)
+                    mediaInfo: JSON.parse(this.responseText).data
                 });
 
 
@@ -180,40 +187,57 @@ class Home extends Component {
             <div>
                 <div className="app-header app-logo">
                     <Header heading="Image Viewer" />
-
                 </div>
-                <div>
+                
+                
+
+                <div className="card-style">
+                    <br/><br/>
                     <Grid container spacing={24}>
-                        <Grid item xs={12} sm={6}>
+                        <Grid  item xs={12} sm={6}>
                             <Card className={classes.card}>
                                 <CardHeader
                                     avatar={
                                         <Avatar  className={classes.bigAvatar}>
-
                                             <img src={this.state.ownerInfo.profile_picture} alt={"logo"} /></Avatar>
-                                    }
-
-
-
-                                    title={this.state.ownerInfo.username}
-                                    subheader="May 23, 2019" />
-
-
+                                            }
+                                            title={this.state.ownerInfo.username}
+                                            subheader={this.state.mediaInfo.data.created_time} />
                                 <CardContent>
                                     <img src={first} alt={"uploadedpic1"} className="image-properties" />
                                     <hr />
-                                    <Typography variant="caption">
-                                        Caption blah blah blah
-                                </Typography>
-                                    <Typography>
-                                        #images #description
-                                </Typography>
+                                    <Typography variant="caption">{this.state.ownerInfo.bio}</Typography>
+                                    <Typography>#images #description</Typography>
                                     <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
                                     <br /><br />
                                     <FormControl >
                                         <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
                                         <Input id="imagecomment" type="text"  onChange={this.imageCommentChangeHandler} />
+                                    </FormControl>
+                                    <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
+                                </CardContent>
+                            </Card>
+                        </Grid>
 
+                        <Grid item xs={12} sm={6}>
+                            <Card className={classes.card}>
+                                <CardHeader
+                                    avatar={
+                                        <Avatar  className={classes.bigAvatar}>
+                                            <img src={this.state.ownerInfo.profile_picture} alt={"logo"} /></Avatar>
+                                            }
+                                            title={this.state.ownerInfo.username}
+                                            subheader={this.state.mediaInfo.created_time} />
+                                <CardContent>
+                                    <img src={second} alt={"uploadedpic1"} className="image-properties" />
+                                    <hr />
+                                    <Typography variant="caption">{this.state.ownerInfo.bio}</Typography>
+                                    <Typography>#images #description</Typography>
+                                    <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
+                                    <br /><br />
+                                    <FormControl >
+                                        <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
+                                        <Input id="imagecomment" type="text"  onChange={this.imageCommentChangeHandler} />
                                     </FormControl>
                                     <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
                                 </CardContent>
@@ -222,54 +246,35 @@ class Home extends Component {
 
 
                         <Grid item xs={12} sm={6}>
-
                             <Card className={classes.card}>
-                            <CardHeader
+                                <CardHeader
                                     avatar={
                                         <Avatar  className={classes.bigAvatar}>
-
                                             <img src={this.state.ownerInfo.profile_picture} alt={"logo"} /></Avatar>
-                                    }
-
-
-
-                                    title={this.state.ownerInfo.username}
-                                    subheader="May 22, 2019" />
-
-
+                                            }
+                                            title={this.state.ownerInfo.username}
+                                            subheader={this.state.mediaInfo.created_time} />
                                 <CardContent>
-                                    <img src={second} alt={"uploadedpic2"} className="image-properties" />
+                                    <img src={fifth} alt={"uploadedpic1"} className="image-properties" />
                                     <hr />
-                                    <Typography variant="caption">
-                                        {this.state.ownerInfo.bio}
-                                </Typography>
-                                    <Typography>
-                                        #images2  #description2
-                                </Typography>
+                                    <Typography variant="caption">{this.state.ownerInfo.bio}</Typography>
+                                    <Typography>#images #description</Typography>
                                     <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
                                     <br /><br />
                                     <FormControl >
-                                        <InputLabel htmlFor="imageComment">Add a Comment</InputLabel>
-                                        <Input id="imageComment" type="text"  onChange={this.imageCommentChangeHandler} />
-
+                                        <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
+                                        <Input id="imagecomment" type="text"  onChange={this.imageCommentChangeHandler} />
                                     </FormControl>
                                     <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
                                 </CardContent>
                             </Card>
-
                         </Grid>
-                    </Grid>
 
+                    </Grid>
                 </div>
             </div >
-
-
-        )
+            )
+        }
     }
-
-
-}
-
-
-
+    
 export default withStyles(styles)(Home);
