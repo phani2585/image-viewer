@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+//import AppBar from '@material-ui/core/AppBar';
+//import Toolbar from '@material-ui/core/Toolbar';
 //import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
@@ -9,21 +9,30 @@ import Input from '@material-ui/core/Input';
 //import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 //import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+//import SearchIcon from '@material-ui/icons/Search';
 import './Home.css';
-import IconButton from '@material-ui/core/IconButton';
+//import IconButton from '@material-ui/core/IconButton';
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
+//import CardMedia from '@material-ui/core/CardMedia';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
-import subheader from '@material-ui/core/CardHeader';
+//import subheader from '@material-ui/core/CardHeader';
 import Grid from '@material-ui/core/Grid';
-import Picture from '../../common/Picture';
+import first from '../../assets/images/first.jpg';
 import Header from '../../common/header/Header';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+//import Input from '@material-ui/core/Input';
+//import PropTypes from 'prop-types';
+//import FormHelperText from '@material-ui/core/FormHelperText';
 
 
-import apiData1 from '../../common/Apionehardcodeddata';
+//import apiData1 from '../../common/Apionehardcodeddata';
+import hearticon from '../../assets/icon/hearticon.svg';
+import profilepic from '../../assets/images/profilepic.jpg';
+import second from '../../assets/images/second.jpg';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -102,7 +111,8 @@ class Home extends Component {
         this.url2 = "https://api.instagram.com/v1/users/self/media/recent/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
         this.state = {
             ownerInfo: [],
-            mediaInfo: []
+            mediaInfo: [],
+            iconColor: ""
         }
     }
 
@@ -126,7 +136,7 @@ class Home extends Component {
         let that = this;
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                 console.log(this.responseText);
+                console.log(this.responseText);
                 that.setState({
                     ownerInfo: JSON.parse(this.responseText).data
                 });
@@ -156,6 +166,9 @@ class Home extends Component {
         xhrMediaData.send(mediaData);
     }
 
+    iconClickHandler = event => {
+        this.setState({ iconColor: event.target.value });
+    }
 
     render() {
         const { classes } = this.props;
@@ -170,25 +183,36 @@ class Home extends Component {
                     <Grid container spacing={24}>
                         <Grid item xs={12} sm={6}>
                             <Card className={classes.card}>
-                            <CardHeader
+                                <CardHeader
                                     avatar={
                                         <Avatar aria-label="Recipe" className={classes.bigAvatar}>
-                                
-                                          R</Avatar>} 
-                                           title="Username1"
-                                           subheader="May 23, 2019"
-                                           />
+
+                                            <img src={profilepic} alt={"logo"} /></Avatar>
+                                    }
+
+
+
+                                    title="Username1"
+                                    subheader="May 23, 2019" />
+
 
                                 <CardContent>
-                                <CardMedia className={classes.media}
-                                image="\image-viewer\src\assets\images\first.jpg" />
-                                <hr/>
-                                <Typography variant="caption">
-                                    Caption blah blah blah 
+                                    <img src={first} alt={"uploadedpic1"} className="image-properties" />
+                                    <hr />
+                                    <Typography variant="caption">
+                                        Caption blah blah blah
                                 </Typography>
-                                <Typography>
-                                    #images #description
+                                    <Typography>
+                                        #images #description
                                 </Typography>
+                                    <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
+                                    <br /><br />
+                                    <FormControl >
+                                        <InputLabel htmlFor="imageComment">Add a Comment</InputLabel>
+                                        <Input id="imageComment" type="text" imageComment={this.state.imageComment} onChange={this.imageCommentChangeHandler} />
+
+                                    </FormControl>
+                                    <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
                                 </CardContent>
                             </Card>
                         </Grid>
@@ -196,36 +220,46 @@ class Home extends Component {
 
                         <Grid item xs={12} sm={6}>
 
-                        <Card className={classes.card}>
-                            <CardHeader
+                            <Card className={classes.card}>
+                                <CardHeader
                                     avatar={
                                         <Avatar aria-label="Recipe" className={classes.bigAvatar}>
-                                
-                                           P </Avatar>} 
-                                           title="Username2"
-                                           subheader="May 22, 2019"
-                                           />
-                                   
 
-                            <CardContent>
-                            <CardMedia className={classes.media}
-                            image="/static/images/cards/paella.jpg"
-                            
-                            />
-                                <Typography>
-                                    Hello
-                        </Typography>
-                            </CardContent>
-                                </Card>
+                                            <img src={profilepic} alt={"logo"} /> </Avatar>
+                                    }
+                                    title="Username2"
+                                    subheader="May 22, 2019"
+                                />
 
-                    </Grid>
+
+                                <CardContent>
+                                    <img src={second} alt={"uploadedpic2"} className="image-properties" />
+                                    <hr />
+                                    <Typography variant="caption">
+                                        Caption 2 blah blah blah
+                                </Typography>
+                                    <Typography>
+                                        #images2  #description2
+                                </Typography>
+                                    <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
+                                    <br /><br />
+                                    <FormControl >
+                                        <InputLabel htmlFor="imageComment">Add a Comment</InputLabel>
+                                        <Input id="imageComment" type="text" imageComment={this.state.imageComment} onChange={this.imageCommentChangeHandler} />
+
+                                    </FormControl>
+                                    <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
+                                </CardContent>
+                            </Card>
+
                         </Grid>
+                    </Grid>
 
-            </div>
-                </div >
+                </div>
+            </div >
 
 
-                )
+        )
     }
 
 
