@@ -6,5 +6,6 @@ import Controller from '../src/common/Controller';
 
 
 ReactDOM.render(<Controller/>, document.getElementById('root'));
-/* Temporarily enabled to view content of Profile page*/
+
+/* Temporarily used to view content of Profile page*/
 //ReactDOM.render(<Profile/>, document.getElementById('root'));

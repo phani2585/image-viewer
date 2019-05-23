@@ -33,6 +33,8 @@ import hearticon from '../../assets/icon/hearticon.svg';
 import profilepic from '../../assets/images/profilepic.jpg';
 import second from '../../assets/images/second.jpg';
 import Button from '@material-ui/core/Button';
+//import Apione from '../../common/Apione';
+
 
 
 
@@ -107,7 +109,7 @@ class Home extends Component {
 
     constructor() {
         super();
-        this.url1 = "https://api.instagram.com/v1/users/self/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
+        //this.url1 = "https://api.instagram.com/v1/users/self/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
         this.url2 = "https://api.instagram.com/v1/users/self/media/recent/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
         this.state = {
             ownerInfo: [],
@@ -143,19 +145,19 @@ class Home extends Component {
             }
 
         })
-        xhr.open("GET", this.url1);
+        xhr.open("GET", this.props.baseUrl+"?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3");
         xhr.send(ownerData);
 
         // Get media info of owner of accessToken
-        let mediaData = null;
+       let mediaData = null;
         let xhrMediaData = new XMLHttpRequest();
-
+        
         xhrMediaData.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
                 //console.log(this.responseText);
                 that.setState({
 
-                    mediaInfo: JSON.parse(this.responseText).user
+                    mediaInfo: JSON.parse(this.responseText)
                 });
 
 
@@ -166,10 +168,11 @@ class Home extends Component {
         xhrMediaData.send(mediaData);
     }
 
-    iconClickHandler = event => {
+
+   /* iconClickHandler = event => {
         this.setState({ iconColor: event.target.value });
     }
-
+*/
     render() {
         const { classes } = this.props;
 
@@ -185,14 +188,14 @@ class Home extends Component {
                             <Card className={classes.card}>
                                 <CardHeader
                                     avatar={
-                                        <Avatar aria-label="Recipe" className={classes.bigAvatar}>
+                                        <Avatar  className={classes.bigAvatar}>
 
-                                            <img src={profilepic} alt={"logo"} /></Avatar>
+                                            <img src={this.state.ownerInfo.profile_picture} alt={"logo"} /></Avatar>
                                     }
 
 
 
-                                    title="Username1"
+                                    title={this.state.ownerInfo.username}
                                     subheader="May 23, 2019" />
 
 
@@ -208,8 +211,8 @@ class Home extends Component {
                                     <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
                                     <br /><br />
                                     <FormControl >
-                                        <InputLabel htmlFor="imageComment">Add a Comment</InputLabel>
-                                        <Input id="imageComment" type="text" imageComment={this.state.imageComment} onChange={this.imageCommentChangeHandler} />
+                                        <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
+                                        <Input id="imagecomment" type="text"  onChange={this.imageCommentChangeHandler} />
 
                                     </FormControl>
                                     <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
@@ -221,22 +224,24 @@ class Home extends Component {
                         <Grid item xs={12} sm={6}>
 
                             <Card className={classes.card}>
-                                <CardHeader
+                            <CardHeader
                                     avatar={
-                                        <Avatar aria-label="Recipe" className={classes.bigAvatar}>
+                                        <Avatar  className={classes.bigAvatar}>
 
-                                            <img src={profilepic} alt={"logo"} /> </Avatar>
+                                            <img src={this.state.ownerInfo.profile_picture} alt={"logo"} /></Avatar>
                                     }
-                                    title="Username2"
-                                    subheader="May 22, 2019"
-                                />
+
+
+
+                                    title={this.state.ownerInfo.username}
+                                    subheader="May 22, 2019" />
 
 
                                 <CardContent>
                                     <img src={second} alt={"uploadedpic2"} className="image-properties" />
                                     <hr />
                                     <Typography variant="caption">
-                                        Caption 2 blah blah blah
+                                        {this.state.ownerInfo.bio}
                                 </Typography>
                                     <Typography>
                                         #images2  #description2
@@ -245,7 +250,7 @@ class Home extends Component {
                                     <br /><br />
                                     <FormControl >
                                         <InputLabel htmlFor="imageComment">Add a Comment</InputLabel>
-                                        <Input id="imageComment" type="text" imageComment={this.state.imageComment} onChange={this.imageCommentChangeHandler} />
+                                        <Input id="imageComment" type="text"  onChange={this.imageCommentChangeHandler} />
 
                                     </FormControl>
                                     <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>

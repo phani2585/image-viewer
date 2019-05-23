@@ -9,7 +9,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 //import tileData from './tileData';
 //import Apionehardcodeddata from '../../common/Apionehardcodeddata';
-import apiData2 from '../../common/Apitwohardcodeddata';
+import apiData2 from '../../common/Apitwo';
 im
 
 const styles = theme => ({
