@@ -7,5 +7,5 @@ import Controller from '../src/common/Controller';
 
 ReactDOM.render(<Controller/>, document.getElementById('root'));
 
-/* Temporarily used to view content of Profile page*/
+/* Temporarily used to view content of Profile page till routing to Profile Page developed*/
 //ReactDOM.render(<Profile/>, document.getElementById('root'));

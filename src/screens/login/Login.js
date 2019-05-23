@@ -1,8 +1,7 @@
+/* Work In Progress on Login Page */
+
 import React, { Component } from 'react';
-//import ReactDOM from 'react-dom';
 import './Login.css';
-//import Home from '../../screens/home/Home';
-//import Profile from '../../screens/profile/Profile';
 import Header from '../../common/header/Header';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,15 +13,20 @@ import Typography from '@material-ui/core/Typography';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { Link } from 'react-router-dom';
 
+/* DO NOT FORGET to Delete commented and unnecessary imports at the end */
 
+//import Home from '../../screens/home/Home';
+//import Profile from '../../screens/profile/Profile';
 
+/*Imported all necessary files and components */
 
+/*Class component Login defined with constructor & it's states */
 
 class Login extends Component {
-
+    
     constructor() {
-        super();
-        this.state = {
+          super();
+          this.state = {
             usernamePasswordIncorrect:"dispNone",
             usernameRequired: "dispNone",
             passwordRequired: "dispNone",
@@ -30,12 +34,11 @@ class Login extends Component {
             password: "",
             loggedIn: sessionStorage.getItem("access-token") == null ? false : true
         }
-        
     }
 
+/* Event  Handler Functions Definitions */
 
-
-    loginClickHandler = () => {
+    loginClickHandler = (e) => {
 
         let mockUsernameInstagram = "PGDSD_107";
         let mockPasswordInstagram = "PGDSD@107";
@@ -45,36 +48,33 @@ class Login extends Component {
         if (this.state.username === mockUsernameInstagram && this.state.password === mockPasswordInstagram) {
             window.sessionStorage.setItem("access-token", accessToken);
         }
-
-            this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
-            this.state.password === "" ? this.setState({ passwordRequired: "dispBlock" }) : this.setState({ passwordRequired: "dispNone" });
-            this.state.username !== mockUsernameInstagram || this.state.password !== mockPasswordInstagram  ? this.setState({ usernamePasswordIncorrect:"dispBlock" }) :
-        this.setState({ usernamePasswordIncorrect:"dispNone" });
+        
+        this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
+        this.state.password === "" ? this.setState({ passwordRequired: "dispBlock" }) : this.setState({ passwordRequired: "dispNone" });
+        this.state.username !== mockUsernameInstagram || this.state.password !== mockPasswordInstagram  ? this.setState({ usernamePasswordIncorrect:"dispBlock" }) :this.setState({ usernamePasswordIncorrect:"dispNone" });
     }
             
-            
-            
-
     inputUsernameChangeHandler = (e) => {
         this.setState({ username: e.target.value })
     }
+
     inputPasswordChangeHandler = (e) => {
         this.setState({ password: e.target.value });
     }
+
+/* Rendering JSX elements on the Login Page as per the design requirements */
+
     render() {
+        
         return (
-
-
+           
             <div>
-                
-                
                 <Header heading="Image Viewer"/>
-                <div className="cardStyle">
 
+                <div className="cardStyle">
                     <Card >
                         <CardContent>
-
-                            <Typography variant="title">LOGIN</Typography>
+                        <Typography variant="title">LOGIN</Typography>
                             <FormControl required>
                                 <InputLabel htmlFor="username">Username</InputLabel>
                                 <Input id="username" type="text" username={this.state.username} onChange={this.inputUsernameChangeHandler} />
@@ -90,10 +90,11 @@ class Login extends Component {
                             </FormControl>
                             <br /><br />
                             <Link to={"/home/"}><Button variant="contained" color="primary" onClick={this.loginClickHandler}>LOGIN</Button></Link>
-
-                        </CardContent>
+                            </CardContent>
                     </Card>
                 </div>
+                    
+
             </div>
         )
     }

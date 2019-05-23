@@ -1,16 +1,24 @@
 /* Work In Progress on Profile Page */
+
 import React, { Component } from 'react';
-//import { Link } from 'react-router-dom';
 import './Profile.css';
 import Header from '../../common/header/Header';
 import { withStyles } from '@material-ui/core/styles'
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
+import apiData2 from '../../common/Apidata2';
+
+/* DO NOT FORGET to Delete commented and unnecessary imports at the end */
+
+//import apiData2 from '../../common/Apitwo';
+//import { Link } from 'react-router-dom';
 //import tileData from './tileData';
 //import Apionehardcodeddata from '../../common/Apionehardcodeddata';
-import apiData2 from '../../common/Apitwo';
 
+/*Imported all necessary files and components */
+
+/* Defined classes styles for all relevant imported components */
 
 const styles = theme => ({
     root: {
@@ -26,41 +34,55 @@ const styles = theme => ({
     },
 });
 
+/*Class component Profile defined with constructor & it's states */
+
 class Profile extends Component {
 
     constructor() {
         super();
-        this.url1 = "https://api.instagram.com/v1/users/self/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
-        this.url2 = "https://api.instagram.com/v1/users/self/media/recent/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
         this.state = {
             ownerInfo: [],
             mediaInfo: []
-            }
-            
-        
+        }
     }
 
+
+/* Event  Handler Functions Definitions (Commented as of now , Uncomment/Delete section at the end of this file development)
+    
+      movieNameChangeHandler = event => {
+          this.setState({ movieName: event.target.value });
+      }
+  
+      genreSelectHandler = event => {
+          this.setState({ genres: event.target.value });
+      }
+  
+      artistSelectHandler = event => {
+          this.setState({ artists: event.target.value });
+      }   Sample code written */
+
+
+    /*Code written to make two API calls as per the definitions provided in problem statement */
+
+
     componentWillMount() {
-        // Get owner info of accessToken
+        
+        // Get owner info after authenticating the  accessToken generated 
         let ownerData = null;
         let xhr = new XMLHttpRequest();
         let that = this;
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                console.log(this.responseText);
+                //console.log(this.responseText);
                 that.setState({
-
-                    ownerInfo: JSON.parse(this.responseText).images
+                    ownerInfo: JSON.parse(this.responseText).data
                 });
-
-
             }
-
         })
         xhr.open("GET", this.url1);
         xhr.send(ownerData);
 
-        // Get media info of owner of accessToken
+        // Get media info of owner after authenticated by accessToken
         let mediaData = null;
         let xhrMediaData = new XMLHttpRequest();
 
@@ -68,41 +90,39 @@ class Profile extends Component {
             if (this.readyState === 4) {
                 console.log(this.responseText);
                 that.setState({
-
-                    mediaInfo: JSON.parse(this.responseText).images
-                    
+                    mediaInfo: JSON.parse(this.responseText).data
                 });
-                
-
-
             }
-
         })
         xhrMediaData.open("GET", this.url2);
         xhrMediaData.send(mediaData);
     }
 
+    /* Rendering JSX elements on the Profile Page as per the design requirements */
+
     render() {
+
         const { classes } = this.props;
+
         return (
             <div>
                 <div>
                     <Header heading="Image Viewer"/>
-                    <span className="spanStyle">Profile Page</span>
-                    <h1>Test </h1>
+                    <span className="spanStyle">Profile Page(Rendered to indicate this is profile page * Delete it Later *)</span>
                 </div>
-            
-            <div className={classes.root}>
+                 
+                <div className={classes.root}>
                 <GridList cellHeight={350} cols={4} className={classes.gridListMain}>
                     {apiData2.map(image => (
                         <GridListTile  key={"grid" + image.id}>
-                            <img src={image.profile_picture}  alt={image.full_name} />
+                            <img src={image.images.standard_resolution.url}  alt={image.caption.text} />
                             <GridListTileBar
-                                title={image.full_name} />
+                                title={image.caption.text} />
                         </GridListTile>
                     ))}
                 </GridList>
-            </div>
+                </div>
+            
         </div>
         )
     }

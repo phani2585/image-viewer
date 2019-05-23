@@ -1,38 +1,17 @@
-/* CSS Code to be written for Home page*/
-.spanStyle {
-    color:red;
-}
-.searchIconContainer {
-    color:blue;
-}
-.search-icon{
-    color:blue;
-}
+/* DELETE COMMENT LATER **CSS Code to be written for Home page** */
+
 .app-header {
     background-color: #263238;
     height: 36px;
-    
 }
 
 .app-logo {
     color: #fff;
     font-size: 18px;
     vertical-align: center;
-    
 }
 
-.icon-properties {
-    color: blue;
-}
-.image-properties {
-    display: flex;
-    float:center;
-    width: 500px;
-    height : 500px;
-    padding: 20px ;
 
-}
-.card-style {
-    
-    
-}
+
+
+
