@@ -1,6 +1,7 @@
 /* Work In Progress on Login Page */
 
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import './Login.css';
 import Header from '../../common/header/Header';
 import Card from '@material-ui/core/Card';
@@ -11,7 +12,8 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
+import Home from '../home/Home';
 
 /* DO NOT FORGET to Delete commented and unnecessary imports at the end */
 
@@ -47,7 +49,9 @@ class Login extends Component {
     
         if (this.state.username === mockUsernameInstagram && this.state.password === mockPasswordInstagram) {
             window.sessionStorage.setItem("access-token", accessToken);
-        }
+            ReactDOM.render(<Home/>, document.getElementById('root'));
+            }
+
         
         this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
         this.state.password === "" ? this.setState({ passwordRequired: "dispBlock" }) : this.setState({ passwordRequired: "dispNone" });
@@ -89,7 +93,7 @@ class Login extends Component {
                                 <FormHelperText className={this.state.usernamePasswordIncorrect}><span className="red">Incorrect username and/or password</span></FormHelperText>
                             </FormControl>
                             <br /><br />
-                            <Link to={"/home/"}><Button variant="contained" color="primary" onClick={this.loginClickHandler}>LOGIN</Button></Link>
+                            <Button variant="contained" color="primary" onClick={this.loginClickHandler}>LOGIN</Button>
                             </CardContent>
                     </Card>
                 </div>

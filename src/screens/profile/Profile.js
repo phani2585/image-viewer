@@ -8,6 +8,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import apiData2 from '../../common/Apidata2';
+import testData from '../../common/Test';
 
 /* DO NOT FORGET to Delete commented and unnecessary imports at the end */
 
@@ -21,18 +22,18 @@ import apiData2 from '../../common/Apidata2';
 /* Defined classes styles for all relevant imported components */
 
 const styles = theme => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
-    },
-    gridList: {
-        width: 500,
-        height: 450,
-    },
-});
+    
+        root: {
+            flexGrow: 1,
+            backgroundColor: theme.palette.background.paper
+        },
+        gridListMain: {
+            transform: 'translateZ(0)',
+            cursor: 'pointer'
+        }
+    });
+    
+
 
 /*Class component Profile defined with constructor & it's states */
 
@@ -108,22 +109,32 @@ class Profile extends Component {
             <div>
                 <div>
                     <Header heading="Image Viewer"/>
-                    <span className="spanStyle">Profile Page(Rendered to indicate this is profile page * Delete it Later *)</span>
+                    <span className="spanStyle">Profile Page</span>
                 </div>
+
+                <div className="flex-container">
+                    <div className="left">
+                        <GridList cellHeight={350} cols={4} className={classes.gridListMain}>
+                            {testData.map(image => (
+                                <GridListTile className="released-movie-grid-item" key={"grid" + image.id}>
+                                    <img src={image.url} className="movie-poster" alt={image.text} />
+                                    <GridListTileBar
+                                        title={image.text}
+                                        subtitle={<span>Created  Time: {(image.created_time)}</span>}
+                                    />
+                                </GridListTile>
+                            ))}
+                        </GridList>
+                    </div>
+                    <div className="right">
+
+                    </div>
+                </div>
+            </div>
                  
-                <div className={classes.root}>
-                <GridList cellHeight={350} cols={4} className={classes.gridListMain}>
-                    {apiData2.map(image => (
-                        <GridListTile  key={"grid" + image.id}>
-                            <img src={image.images.standard_resolution.url}  alt={image.caption.text} />
-                            <GridListTileBar
-                                title={image.caption.text} />
-                        </GridListTile>
-                    ))}
-                </GridList>
-                </div>
+                
             
-        </div>
+        
         )
     }
 }

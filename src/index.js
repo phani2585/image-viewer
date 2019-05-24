@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Controller from '../src/common/Controller';
 //import Profile from '../src/screens/profile/Profile';
+//import Home from '../src/screens/home/Home';
+
+
+
+//ReactDOM.render(<Home/> , document.getElementById('root'));
 
 
 ReactDOM.render(<Controller/>, document.getElementById('root'));
