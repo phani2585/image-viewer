@@ -103,14 +103,9 @@ class Home extends Component {
         }
     }
 
-    /* Event  Handler Functions Definitions 
-    
-      
+    /* Event  Handler Functions Definitions */
 
-      onSearchChange = (event) => {
-        this.setState({ searchfield: event.target.value})
-    }
-    */
+
 
 
     /*Code written to make two API calls as per the definitions provided in problem statement */
@@ -147,9 +142,8 @@ class Home extends Component {
         xhrMediaData.open("GET", this.props.baseUrl + "media/recent/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3");
         xhrMediaData.send(mediaData);
     }
+
     /*..........*/
-
-
 
     render() {
         const { classes } = this.props;
@@ -170,7 +164,7 @@ class Home extends Component {
                                 <CardHeader
                                     avatar={
                                         <Avatar  className={classes.bigAvatar}>
-                                            <img src={this.state.ownerInfo.profile_picture} alt={"logo"} /></Avatar>
+                                            <img src={testData[0].profile_picture} alt={"logo"} /></Avatar>
                                             }
                                             title={this.state.ownerInfo.username}
                                             subheader={testData[0].created_time} />
@@ -253,7 +247,7 @@ class Home extends Component {
     
 export default withStyles(styles)(Home);
 
-    /* Retrieving elements from API call and placing in react components via map 
+    /* Retrieving elements from API call and placing in react components via map (MAP)
 
     render() {
 

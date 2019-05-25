@@ -1,4 +1,4 @@
-/* Work In Progress on Login Page */
+/* WORK IN PROGRESS on Login Page */
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -24,6 +24,7 @@ import Home from '../home/Home';
 
 /*Class component Login defined with constructor & it's states */
 
+
 class Login extends Component {
     
     constructor() {
@@ -46,7 +47,7 @@ class Login extends Component {
         let mockPasswordInstagram = "PGDSD@107";
         let accessToken="13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
         
-    
+    console.log(this.state.username);
         if (this.state.username === mockUsernameInstagram && this.state.password === mockPasswordInstagram) {
             window.sessionStorage.setItem("access-token", accessToken);
             ReactDOM.render(<Home/>, document.getElementById('root'));
@@ -75,7 +76,7 @@ class Login extends Component {
             <div>
                 <Header heading="Image Viewer"/>
 
-                <div className="cardStyle">
+                <div className="cardStyle" >
                     <Card >
                         <CardContent>
                         <Typography variant="title">LOGIN</Typography>

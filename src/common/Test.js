@@ -12,7 +12,7 @@ let testData = [
             "posts":"2",
             "follows":"5",
             "followed_by":"7",
-            "full_name":"PG_Diploma_Software_Dev_107",
+            "full_name":"PGDSD_GroupProject",
 
         },
         {
@@ -60,6 +60,50 @@ let testData = [
             "followed_by":"17",
             "full_name":"PG_Diploma_Software_Dev_107",
 
+        },{
+            
+            "id": "2043678961111716326_13521022383",
+            "profile_picture": "https://scontent.cdninstagram.com/vp/4eaee82a75bef902b47bf959755d0f3f/5D977E07/t51.2885-19/s150x150/60319608_364531334179442_5218686809998884864_n.jpg?_nc_ht=scontent.cdninstagram.com",
+            "username": "pgdsd_107",
+            "url"	:	"https://scontent.cdninstagram.com/vp/cea400a4c0b4c334ad7e04f7128062f7/5D9D7052/t51.2885-15/sh0.08/e35/s640x640/59939988_590993021670760_6918152621608340343_n.jpg?_nc_ht=scontent.cdninstagram.com",
+            "created_time": "1557845538",
+            "text": "Radha krishna",
+            "tags":"#Radhe radhe #HariBol",
+            "likes_count":"26",
+            "posts":"22",
+            "follows":"15",
+            "followed_by":"27",
+            "full_name":"PG_Diploma_Software_Dev_107",
+        },
+        {
+            
+            "id": "2043678961111716326_13521022383",
+            "profile_picture": "https://scontent.cdninstagram.com/vp/4eaee82a75bef902b47bf959755d0f3f/5D977E07/t51.2885-19/s150x150/60319608_364531334179442_5218686809998884864_n.jpg?_nc_ht=scontent.cdninstagram.com",
+            "username": "pgdsd_107",
+            "url": "https://scontent.cdninstagram.com/vp/5f45381f90c3b38623c647053302b244/5D8036A8/t51.2885-15/sh0.08/e35/s640x640/60228236_361312727846913_6508080823115132301_n.jpg?_nc_ht=scontent.cdninstagram.com",
+            "created_time": "1557845538",
+            "text": "Radha krishna",
+            "tags":"#Radhe radhe #HariBol",
+            "likes_count":"36",
+            "posts":"212",
+            "follows":"115",
+            "followed_by":"127",
+            "full_name":"PG_Diploma_Software_Dev_107",
+        },
+        {
+            
+            "id": "2043678961111716326_13521022383",
+            "profile_picture": "https://scontent.cdninstagram.com/vp/4eaee82a75bef902b47bf959755d0f3f/5D977E07/t51.2885-19/s150x150/60319608_364531334179442_5218686809998884864_n.jpg?_nc_ht=scontent.cdninstagram.com",
+            "username": "pgdsd_107",
+            "url": "https://scontent.cdninstagram.com/vp/708ddfbb84f254d1aad3f6d3b3027c1e/5D6061A4/t51.2885-15/sh0.08/e35/s640x640/58870401_422288278320229_458568949452515842_n.jpg?_nc_ht=scontent.cdninstagram.com",
+            "created_time": "1557845538",
+            "text": "Radha krishna",
+            "tags":"#Radhe radhe #HariBol",
+            "likes_count":"56",
+            "posts":"72",
+            "follows":"151",
+            "followed_by":"217",
+            "full_name":"PG_Diploma_Software_Dev_107",
         }
         
     
