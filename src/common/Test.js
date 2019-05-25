@@ -6,7 +6,13 @@ let testData = [
             "username": "pgdsd_107",
             "url": "https://scontent.cdninstagram.com/vp/314d99e9487aeb93893dbdbc5e548ce2/5D9CE963/t51.2885-15/sh0.08/e35/s640x640/61197085_421243298425765_5052080274696892878_n.jpg?_nc_ht=scontent.cdninstagram.com",
             "created_time": "1558627242",
-            "text": "#Isckon",
+            "text": "Isckon",
+            "tags":"#I_Love_Krsna #Hare_Krsna",
+            "likes_count":"3",
+            "posts":"2",
+            "follows":"5",
+            "followed_by":"7",
+            "full_name":"PG_Diploma_Software_Dev_107",
 
         },
         {
@@ -15,7 +21,14 @@ let testData = [
             "username": "pgdsd_107",
             "url":"https://scontent.cdninstagram.com/vp/cd6b4fa99ab17e05ef24abe2520fdd20/5D7DA78A/t51.2885-15/e35/59832611_1008489602674199_3184156386368934359_n.jpg?_nc_ht=scontent.cdninstagram.com",
             "created_time": "1557845760",
-            "text": "#Chaitanya Maha Prabhu",
+            "text": "Chaitanya Maha Prabhu",
+            "tags":"#Gauranga #GaurNitai",
+            "likes_count":"4",
+            "posts":"24",
+            "follows":"55",
+            "followed_by":"37",
+            "full_name":"PG_Diploma_Software_Dev_107",
+
         },
         {
             "id": "2043679699258905674_13521022383",
@@ -24,6 +37,13 @@ let testData = [
             "url": "https://scontent.cdninstagram.com/vp/3e06426b72e2ff016866ef16df5d4db4/5D82307E/t51.2885-15/sh0.08/e35/s640x640/59778658_661285514294768_8933504058703689514_n.jpg?_nc_ht=scontent.cdninstagram.com",
             "created_time": "1557845626",
             "text": "Lotus feet of lord",
+            "tags":"#LotusFeet #Saranagathi",
+            "likes_count":"5",
+            "posts":"21",
+            "follows":"52",
+            "followed_by":"71",
+            "full_name":"PG_Diploma_Software_Dev_107",
+
 
         },
         {
@@ -33,6 +53,13 @@ let testData = [
             "url": "https://scontent.cdninstagram.com/vp/82b3bf0acbe7ada907d8fd2a6433f29d/5D9DE7A2/t51.2885-15/sh0.08/e35/s640x640/59547355_1053690761489728_3243124873034934776_n.jpg?_nc_ht=scontent.cdninstagram.com",
             "created_time": "1557845538",
             "text": "Radha krishna",
+            "tags":"#Radhe radhe #HariBol",
+            "likes_count":"6",
+            "posts":"12",
+            "follows":"51",
+            "followed_by":"17",
+            "full_name":"PG_Diploma_Software_Dev_107",
+
         }
         
     

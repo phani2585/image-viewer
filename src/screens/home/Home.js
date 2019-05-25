@@ -16,15 +16,17 @@ import Header from '../../common/header/Header';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
-import apiData1 from '../../common/Apidata1';
-import apiData2 from '../../common/Apidata2';
+
+//import apiData1 from '../../common/Apidata1';
+//import apiData2 from '../../common/Apidata2';
+
 import testData from '../../common/Test';
 
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import Icon from '@material-ui/core/Icon';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+//import GridList from '@material-ui/core/GridList';
+//import GridListTile from '@material-ui/core/GridListTile';
+//import Icon from '@material-ui/core/Icon';
+//import Fab from '@material-ui/core/Fab';
+//import AddIcon from '@material-ui/icons/Add';
 //import SearchBox from '../../common/SearchBox';
 //import CardList from '../../common/CardList';
 
@@ -40,9 +42,9 @@ import AddIcon from '@material-ui/icons/Add';
 //import SearchIcon from '@material-ui/icons/Search';
 //import IconButton from '@material-ui/core/IconButton';
 
-//import first from '../../assets/images/first.jpg';
-//import second from '../../assets/images/second.jpg';
-//import fifth from '../../assets/images/fifth.jpg';
+import first from '../../assets/images/first.jpg';
+import second from '../../assets/images/second.jpg';
+import fifth from '../../assets/images/fifth.jpg';
 
 //import Input from '@material-ui/core/Input';
 //import PropTypes from 'prop-types';
@@ -64,7 +66,7 @@ const styles = theme => ({
         flexGrow: 1,
     },
     card: {
-        maxWidth: 550,
+        maxWidth: '550',
 
     },
     bigAvatar: {
@@ -97,7 +99,7 @@ class Home extends Component {
         this.state = {
             ownerInfo: [],
             mediaInfo: [],
-            searchfield: ''
+            
         }
     }
 
@@ -145,8 +147,113 @@ class Home extends Component {
         xhrMediaData.open("GET", this.props.baseUrl + "media/recent/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3");
         xhrMediaData.send(mediaData);
     }
+    /*..........*/
 
-    /* Rendering JSX elements on the Home Page as per the design requirements */
+
+
+    render() {
+        const { classes } = this.props;
+
+        return (
+            <div>
+                <div className="app-header app-logo">
+                    <Header heading="Image Viewer" />
+                </div>
+                
+                
+
+                <div className="card-style">
+                    <br/><br/>
+                    <Grid container spacing={24}>
+                        <Grid  item xs={12} sm={6}>
+                            <Card className={classes.card}>
+                                <CardHeader
+                                    avatar={
+                                        <Avatar  className={classes.bigAvatar}>
+                                            <img src={this.state.ownerInfo.profile_picture} alt={"logo"} /></Avatar>
+                                            }
+                                            title={this.state.ownerInfo.username}
+                                            subheader={testData[0].created_time} />
+                                <CardContent>
+                                    <img src={first} alt={"uploadedpic1"} className="image-properties" />
+                                    <hr />
+                                    <Typography variant="caption">{this.state.ownerInfo.bio}</Typography>
+                                    <Typography>#images #description</Typography>
+                                    <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
+                                    <br /><br />
+                                    <FormControl >
+                                        <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
+                                        <Input id="imagecomment" type="text"  onChange={this.imageCommentChangeHandler} />
+                                    </FormControl>
+                                    <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+
+
+                        <Grid item xs={12} sm={6}>
+                            <Card className={classes.card}>
+                                <CardHeader
+                                    avatar={
+                                        <Avatar  className={classes.bigAvatar}>
+                                            <img src={this.state.ownerInfo.profile_picture} alt={"logo"} /></Avatar>
+                                            }
+                                            title={this.state.ownerInfo.username}
+                                            subheader={this.state.mediaInfo.created_time} />
+                                <CardContent>
+                                    <img src={fifth} alt={"uploadedpic1"} className="image-properties" />
+                                    <hr />
+                                    <Typography variant="caption">{this.state.ownerInfo.bio}</Typography>
+                                    <Typography>#images #description</Typography>
+                                    <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
+                                    <br /><br />
+                                    <FormControl >
+                                        <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
+                                        <Input id="imagecomment" type="text"  onChange={this.imageCommentChangeHandler} />
+                                    </FormControl>
+                                    <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+
+                        <Grid item xs={12} sm={6}>
+                            <Card className={classes.card}>
+                                <CardHeader
+                                    avatar={
+                                        <Avatar  className={classes.bigAvatar}>
+                                            <img src={this.state.ownerInfo.profile_picture} alt={"logo"} /></Avatar>
+                                            }
+                                            title={this.state.ownerInfo.username}
+                                            subheader={this.state.mediaInfo.created_time} />
+                                <CardContent>
+                                    <img src={second} alt={"uploadedpic1"} className="image-properties" />
+                                    <hr />
+                                    <Typography variant="caption">{this.state.ownerInfo.bio}</Typography>
+                                    <Typography>#images #description</Typography>
+                                    <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
+                                    <br /><br />
+                                    <FormControl >
+                                        <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
+                                        <Input id="imagecomment" type="text"  onChange={this.imageCommentChangeHandler} />
+                                    </FormControl>
+                                    <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+
+
+                        
+
+                    </Grid>
+                </div>
+            </div >
+            )
+        }
+    }
+    
+export default withStyles(styles)(Home);
+
+    /* Retrieving elements from API call and placing in react components via map 
 
     render() {
 
@@ -219,6 +326,33 @@ class Home extends Component {
                         </Grid>
                     
                     </Grid>
+                    <Grid  item xs={12} sm={6}>
+                        
+                    <Card className={classes.card}>
+                        <CardHeader
+                            avatar={
+                                <Avatar  className={classes.bigAvatar}>
+                                    <img src={image.profile_picture} alt={"logo"} /></Avatar>
+                                    }
+                                    title={image.username}
+                                    subheader={image.created_time} />
+                        <CardContent>
+                            <img src={image.url} alt={"uploadedpic1"} className="image-properties" />
+                            <hr />
+                            <Typography variant="caption">{image.text}</Typography>
+                            <Typography>{image.text}</Typography>
+                            <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
+                            <br /><br />
+                            <FormControl >
+                                <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
+                                <Input id="imagecomment" type="text"  onChange={this.imageCommentChangeHandler} />
+                            </FormControl>
+                            <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
+                        </CardContent>
+                    </Card>
+                </Grid>
+            
+            </Grid>
                      ))}
                   
            </div>                        
@@ -234,4 +368,4 @@ class Home extends Component {
 
     export default withStyles(styles)(Home);
 
-
+*/
