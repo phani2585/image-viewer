@@ -66,8 +66,7 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        height: '550px',
-        width: '550px'
+        
     }
 };
 
@@ -113,7 +112,7 @@ class Profile extends Component {
         this.setState({ fullname: e.target.value });
     }
 
-    openModalHandler = () => {
+    openEditModalHandler = () => {
         this.setState({
             modalIsOpen: true,
             fullnameRequired: "dispNone",
@@ -122,7 +121,7 @@ class Profile extends Component {
         });
     }
 
-    closeModalHandler = () => {
+    closeEditModalHandler = () => {
         this.setState({ modalIsOpen: false });
     }
 
@@ -217,7 +216,7 @@ class Profile extends Component {
                                     <Modal
                                         ariaHideApp={false}
                                         isOpen={this.state.modalIsOpen}
-                                        onRequestClose={this.closeModalHandler}
+                                        onRequestClose={this.closeEditModalHandler}
                                         style={customStyles}
                                     >
                                         <Tabs className="tabs" value={this.state.value} >

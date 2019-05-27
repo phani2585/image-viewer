@@ -150,9 +150,9 @@ class Home extends Component {
 
         return (
             <div>
-                <div className="app-header app-logo">
-                    <Header heading="Image Viewer" />
-                </div>
+               
+                    <Header  />
+               
                 
                 
 
@@ -247,119 +247,4 @@ class Home extends Component {
     
 export default withStyles(styles)(Home);
 
-    /* Retrieving elements from API call and placing in react components via map (MAP)
-
-    render() {
-
-        const { classes } = this.props;
-        
-        return (
-            <div>
-                <div className="app-header app-logo">
-                    <Header >
-                    
-                    <div className="search-box">SearchBox</div>
-                    <div classname="profile_icon">ProfileIcon</div>
-                    </Header>
-                </div>
-                
-                
-
-                <div className="card-style">
-                    <br/><br/>
-                    {testData.map(image => (
-                    <Grid container spacing={24}>
-                        <Grid  item xs={12} sm={6}>
-                            <Card className={classes.card}>
-                                <CardHeader
-                                    avatar={
-                                        <Avatar  className={classes.bigAvatar}>
-                                            <img src={image.profile_picture} alt={"logo"} /></Avatar>
-                                            }
-                                            title={image.username}
-                                            subheader={image.created_time} />
-                                <CardContent>
-                                    <img src={image.url} alt={"uploadedpic1"} className="image-properties" />
-                                    <hr />
-                                    <Typography variant="caption">{image.text}</Typography>
-                                    <Typography>{image.text}</Typography>
-                                    <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
-                                    <br /><br />
-                                    <FormControl >
-                                        <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
-                                        <Input id="imagecomment" type="text"  onChange={this.imageCommentChangeHandler} />
-                                    </FormControl>
-                                    <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                        <Grid  item xs={12} sm={6}>
-                        
-                            <Card className={classes.card}>
-                                <CardHeader
-                                    avatar={
-                                        <Avatar  className={classes.bigAvatar}>
-                                            <img src={image.profile_picture} alt={"logo"} /></Avatar>
-                                            }
-                                            title={image.username}
-                                            subheader={image.created_time} />
-                                <CardContent>
-                                    <img src={image.url} alt={"uploadedpic1"} className="image-properties" />
-                                    <hr />
-                                    <Typography variant="caption">{image.text}</Typography>
-                                    <Typography>{image.text}</Typography>
-                                    <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
-                                    <br /><br />
-                                    <FormControl >
-                                        <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
-                                        <Input id="imagecomment" type="text"  onChange={this.imageCommentChangeHandler} />
-                                    </FormControl>
-                                    <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                    
-                    </Grid>
-                    <Grid  item xs={12} sm={6}>
-                        
-                    <Card className={classes.card}>
-                        <CardHeader
-                            avatar={
-                                <Avatar  className={classes.bigAvatar}>
-                                    <img src={image.profile_picture} alt={"logo"} /></Avatar>
-                                    }
-                                    title={image.username}
-                                    subheader={image.created_time} />
-                        <CardContent>
-                            <img src={image.url} alt={"uploadedpic1"} className="image-properties" />
-                            <hr />
-                            <Typography variant="caption">{image.text}</Typography>
-                            <Typography>{image.text}</Typography>
-                            <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
-                            <br /><br />
-                            <FormControl >
-                                <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
-                                <Input id="imagecomment" type="text"  onChange={this.imageCommentChangeHandler} />
-                            </FormControl>
-                            <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
-                        </CardContent>
-                    </Card>
-                </Grid>
-            
-            </Grid>
-                     ))}
-                  
-           </div>                        
-                    
-
-            </div>
-            
-            
-		)
-    }
-}
-
-
-    export default withStyles(styles)(Home);
-
-*/
+    
