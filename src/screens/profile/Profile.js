@@ -1,4 +1,4 @@
-/* WORK IN PROGRESS ==> Profile Page */
+/* WORK IN PROGRESS on Profile Page */
 
 import React, { Component } from 'react';
 import './Profile.css';
@@ -24,9 +24,6 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import first from '../../assets/images/first.jpg';
 import hearticon from '../../assets/icon/hearticon.svg';
-
-
-/* DO NOT FORGET to Delete commented and unnecessary imports at the end */
 
 /*Imported all necessary files and components */
 
@@ -66,10 +63,9 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        
+
     }
 };
-
 
 const TabContainer = function (props) {
     return (
@@ -98,8 +94,8 @@ class Profile extends Component {
         }
     }
 
-
     /* Event  Handler Functions Definitions  */
+    /*updateClickHandler needs to be tested */
 
     updateClickHandler = (e) => {
 
@@ -139,7 +135,6 @@ class Profile extends Component {
 
     /*Code written to make two API calls as per the definitions provided in problem statement */
 
-
     componentWillMount() {
 
         // Get owner info after authenticating the  accessToken generated 
@@ -174,6 +169,8 @@ class Profile extends Component {
     }
 
     /* Rendering JSX elements on the Profile Page as per the design requirements */
+    /* Header needs to be right */
+    /* Can improvise info Section */
 
     render() {
 
@@ -181,6 +178,7 @@ class Profile extends Component {
 
         return (
             <div>
+
                 <div>
                     <Header heading="Image Viewer" />
 
@@ -235,18 +233,13 @@ class Profile extends Component {
 
                                             <Button variant="contained" color="primary" onClick={this.updateClickHandler}>UPDATE</Button>
                                         </TabContainer>
-
-
                                     </Modal>
                                 </div>
 
                                 <div className="col-right">
                                 </div>
                             </div>
-
-
                         </div>
-
                         <div class="column-right">
                         </div>
 
@@ -317,10 +310,6 @@ class Profile extends Component {
 
                 </div>
             </div>
-
-
-
-
 
         )
     }

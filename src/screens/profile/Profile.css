@@ -2,6 +2,8 @@
 
 /* Try to make css definitions uniform as in cardStyle, dispNone versus app-logo col-left */
 
+/*plz be careful while changing this CSS, It will upset the info Section*/
+
 .cardSytle {
     color:blue;
     display:flex;

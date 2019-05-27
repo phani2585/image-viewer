@@ -1,4 +1,4 @@
-/* WORK IN PROGRESS on Login Page */
+/* WORK IN PROGRESS on Login Page : Routing & Header design left */
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -12,25 +12,16 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import FormHelperText from '@material-ui/core/FormHelperText';
-//import { Link } from 'react-router-dom';
 import Home from '../home/Home';
 
-/* DO NOT FORGET to Delete commented and unnecessary imports at the end */
-
-//import Home from '../../screens/home/Home';
-//import Profile from '../../screens/profile/Profile';
-
-/*Imported all necessary files and components */
-
 /*Class component Login defined with constructor & it's states */
-
 
 class Login extends Component {
     
     constructor() {
-          super();
-          this.state = {
-            usernamePasswordIncorrect:"dispNone",
+        super();
+        this.state = {
+            usernamePasswordIncorrect: "dispNone",
             usernameRequired: "dispNone",
             passwordRequired: "dispNone",
             username: "",
@@ -39,26 +30,25 @@ class Login extends Component {
         }
     }
 
-/* Event  Handler Functions Definitions */
+    /* Event  Handler Functions Definitions */
 
     loginClickHandler = (e) => {
 
         let mockUsernameInstagram = "PGDSD_107";
         let mockPasswordInstagram = "PGDSD@107";
-        let accessToken="13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
-        
-    console.log(this.state.username);
+        let accessToken = "13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
+
         if (this.state.username === mockUsernameInstagram && this.state.password === mockPasswordInstagram) {
             window.sessionStorage.setItem("access-token", accessToken);
-            ReactDOM.render(<Home/>, document.getElementById('root'));
-            }
+            ReactDOM.render(<Home />, document.getElementById('root')); // Edit  Routing 
+        }
 
-        
         this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
         this.state.password === "" ? this.setState({ passwordRequired: "dispBlock" }) : this.setState({ passwordRequired: "dispNone" });
-        this.state.username !== mockUsernameInstagram || this.state.password !== mockPasswordInstagram  ? this.setState({ usernamePasswordIncorrect:"dispBlock" }) :this.setState({ usernamePasswordIncorrect:"dispNone" });
+        //Edit "Incorrect username and/or password" functionality
+        this.state.username !== mockUsernameInstagram || this.state.password !== mockPasswordInstagram ? this.setState({ usernamePasswordIncorrect: "dispBlock" }) : this.setState({ usernamePasswordIncorrect: "dispNone" });
     }
-            
+
     inputUsernameChangeHandler = (e) => {
         this.setState({ username: e.target.value })
     }
@@ -67,19 +57,21 @@ class Login extends Component {
         this.setState({ password: e.target.value });
     }
 
-/* Rendering JSX elements on the Login Page as per the design requirements */
+    /* Rendering JSX elements on the Login Page as per the design requirements */
+
+    /* Header needs to be edited */
 
     render() {
-        
+
         return (
-           
+
             <div>
-                <Header heading="Image Viewer"/>
+                <Header heading="Image Viewer" />
 
                 <div className="cardStyle" >
                     <Card >
                         <CardContent>
-                        <Typography variant="title">LOGIN</Typography>
+                            <Typography variant="title">LOGIN</Typography>
                             <FormControl required>
                                 <InputLabel htmlFor="username">Username</InputLabel>
                                 <Input id="username" type="text" username={this.state.username} onChange={this.inputUsernameChangeHandler} />
@@ -90,15 +82,15 @@ class Login extends Component {
                                 <InputLabel htmlFor="password">Password</InputLabel>
                                 <Input id="password" type="password" password={this.state.password} onChange={this.inputPasswordChangeHandler} />
                                 <FormHelperText className={this.state.passwordRequired}><span className="red">required</span></FormHelperText>
-                                <br/>
+                                <br />
                                 <FormHelperText className={this.state.usernamePasswordIncorrect}><span className="red">Incorrect username and/or password</span></FormHelperText>
                             </FormControl>
                             <br /><br />
                             <Button variant="contained" color="primary" onClick={this.loginClickHandler}>LOGIN</Button>
-                            </CardContent>
+                        </CardContent>
                     </Card>
                 </div>
-                    
+
 
             </div>
         )

@@ -1,4 +1,3 @@
-/* DELETE COMMENT LATER **CSS Code to be written for Login.css */
 
 /* MOVE COMMON STYLES IN COMMON.CSS & Plz remove unnecessary properties and attributes */
 
@@ -8,7 +7,6 @@
     display: flex;
     justify-content: center;
     margin-top: 2%;
-    
 }
 
 .dispNone {
