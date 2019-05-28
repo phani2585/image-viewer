@@ -11,7 +11,6 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
-import Grid from '@material-ui/core/Grid';
 import hearticon from '../../assets/icon/hearticon.svg';
 import Header from '../../common/header/Header';
 import FormControl from '@material-ui/core/FormControl';
@@ -31,7 +30,7 @@ const styles = theme => ({
         flexGrow: 1,
     },
     card: {
-        maxWidth: '550',
+        maxWidth: '100%',
 
     },
     bigAvatar: {
@@ -48,9 +47,9 @@ const styles = theme => ({
     gridListMain: {
         transform: 'translateZ(0)',
         cursor: 'pointer'
-        
+
     },
-    
+
 
 
 });
@@ -62,11 +61,14 @@ class Home extends Component {
     constructor() {
         super();
         this.state = {
+            unixDateTimestamp: [],
             ownerInfo: [],
             mediaInfo: [],
 
         }
     }
+
+
 
     /* Event  Handler Functions Definitions */
     /* Functions for iconClickHandler(),
@@ -86,6 +88,7 @@ class Home extends Component {
             if (this.readyState === 4) {
                 that.setState({
                     ownerInfo: JSON.parse(this.responseText).data
+
                 });
             }
         })
@@ -99,7 +102,8 @@ class Home extends Component {
         xhrMediaData.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
                 that.setState({
-                    mediaInfo: JSON.parse(this.responseText).data
+                    mediaInfo: JSON.parse(this.responseText).data,
+                    //unixDateTimestamp :JSON.parse(this.responseText).data.created_time
                 });
             }
         })
@@ -121,47 +125,49 @@ class Home extends Component {
             <div>
                 <Header />
 
-
-                <div className={classes.root}>
-                    <GridList cellHeight={700} className={classes.gridList} cols={2}>
+                <div className= "cardStyle">
+                    <br />
+                    <GridList cellHeight={"auto"} className={classes.gridListMain} cols={2}>
                         {testData.map(image => (
-                            <GridListTile key={image.id} cols={image.cols || 1}>
-                                <Grid container spacing={24}>
-                                    <Grid item xs={12} sm={6}>
-                                        <Card className={classes.card}>
-                                            <CardHeader
-                                                avatar={
-                                                    <Avatar className={classes.bigAvatar}>
-                                                        <img src={image.profile_picture} alt={"logo"} /></Avatar>
-                                                }
-                                                title={image.username}
-                                                subheader={image.created_time} />
-                                            <CardContent>
-                                                <img src={image.url} alt={image.text} className="image-properties" />
-                                                <hr />
-                                                <Typography variant="caption">{image.text}</Typography>
-                                                <Typography>{image.tags}</Typography>
-                                                <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
-                                                <br /><br />
-                                                <FormControl >
-                                                    <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
-                                                    <Input id="imagecomment" type="text" onChange={this.imageCommentChangeHandler} />
-                                                </FormControl>
-                                                <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
-                                            </CardContent>
-                                        </Card>
-                                    </Grid>
-                                </Grid>
-                            </GridListTile>
-                        ))}
+
+                            <GridListTile key={"image" + image.id} cols={image.cols || 1}>
+
+                                    <Card className={classes.card}>
+
+                                        <CardHeader 
+                                            avatar={
+                                                <Avatar className={classes.bigAvatar}>
+                                                    <img src={image.profile_picture} alt={"logo"} /></Avatar>
+                                            }
+                                            title={image.username}
+                                            subheader={image.created_time} />
+
+
+                                        <CardContent>
+                                            <img src={image.url} alt={image.text} className="image-properties" />
+                                            <hr />
+                                            <Typography variant="caption">{image.text}</Typography>
+                                            <Typography>{image.tags}</Typography>
+                                            <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
+                                            <br /><br />
+                                            <FormControl >
+                                                <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
+                                                <Input id="imagecomment" type="text" onChange={this.imageCommentChangeHandler} />
+                                            </FormControl>
+                                            <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
+                                        </CardContent>
+
+                                    </Card>
+                                    
+                        </GridListTile>
+                         ))};
+                         
                     </GridList>
-                </div>
-
-                <div className="card-style">
-                    <br /><br />
 
                 </div>
-            </div >
+
+            </div>
+
         )
     }
 }

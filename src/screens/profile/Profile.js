@@ -22,7 +22,6 @@ import pencil from '../../assets/icon/pencil.png';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import first from '../../assets/images/first.jpg';
 import hearticon from '../../assets/icon/hearticon.svg';
 
 /*Imported all necessary files and components */
@@ -269,7 +268,7 @@ class Profile extends Component {
                             <div className="row">
 
                                 <div className="column" >
-                                    <img src={first} alt={"uploadedpic1"} />
+                                    <img src={testData[0].url} alt={"uploadedpic1"} />
 
                                 </div>
 
@@ -304,6 +303,7 @@ class Profile extends Component {
                         </Card>
 
                     </Modal>
+                    
                 </div>
 
                 <div className="right">

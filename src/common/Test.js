@@ -22,8 +22,16 @@ let testData = [
             "url":"https://scontent.cdninstagram.com/vp/cd6b4fa99ab17e05ef24abe2520fdd20/5D7DA78A/t51.2885-15/e35/59832611_1008489602674199_3184156386368934359_n.jpg?_nc_ht=scontent.cdninstagram.com",
             "created_time": "1557845760",
             "text": "Chaitanya Maha Prabhu",
-            "tags":"#Gauranga #GaurNitai",
-            "likes_count":"4",
+            "user_has_liked": false,
+            "likes": {
+              "count": 10
+            },
+            "tags": [
+              "iscon"
+            ],
+            "comments": {
+              "count": 20
+            },
             "posts":"24",
             "follows":"55",
             "followed_by":"37",
@@ -37,8 +45,16 @@ let testData = [
             "url": "https://scontent.cdninstagram.com/vp/3e06426b72e2ff016866ef16df5d4db4/5D82307E/t51.2885-15/sh0.08/e35/s640x640/59778658_661285514294768_8933504058703689514_n.jpg?_nc_ht=scontent.cdninstagram.com",
             "created_time": "1557845626",
             "text": "Lotus feet of lord",
-            "tags":"#LotusFeet #Saranagathi",
-            "likes_count":"5",
+            "user_has_liked": false,
+            "likes": {
+              "count": 13
+            },
+            "tags": [
+              "chandana"
+            ],
+            "comments": {
+              "count": 1
+            },
             "posts":"21",
             "follows":"52",
             "followed_by":"71",
@@ -53,8 +69,16 @@ let testData = [
             "url": "https://scontent.cdninstagram.com/vp/82b3bf0acbe7ada907d8fd2a6433f29d/5D9DE7A2/t51.2885-15/sh0.08/e35/s640x640/59547355_1053690761489728_3243124873034934776_n.jpg?_nc_ht=scontent.cdninstagram.com",
             "created_time": "1557845538",
             "text": "Radha krishna",
-            "tags":"#Radhe radhe #HariBol",
-            "likes_count":"6",
+            "user_has_liked": true,
+            "likes": {
+              "count": 3
+            },
+            "tags": [
+                "#Radhe radhe #HariBol"
+            ],
+            "comments": {
+              "count": 1
+            },
             "posts":"12",
             "follows":"51",
             "followed_by":"17",
@@ -68,8 +92,16 @@ let testData = [
             "url"	:	"https://scontent.cdninstagram.com/vp/cea400a4c0b4c334ad7e04f7128062f7/5D9D7052/t51.2885-15/sh0.08/e35/s640x640/59939988_590993021670760_6918152621608340343_n.jpg?_nc_ht=scontent.cdninstagram.com",
             "created_time": "1557845538",
             "text": "Radha krishna",
-            "tags":"#Radhe radhe #HariBol",
-            "likes_count":"26",
+            "user_has_liked": true,
+            "likes": {
+              "count": 23
+            },
+            "tags": [
+                "#Radhe radhe #HariBol"
+            ],
+            "comments": {
+              "count": 11
+            },
             "posts":"22",
             "follows":"15",
             "followed_by":"27",
@@ -83,8 +115,16 @@ let testData = [
             "url": "https://scontent.cdninstagram.com/vp/5f45381f90c3b38623c647053302b244/5D8036A8/t51.2885-15/sh0.08/e35/s640x640/60228236_361312727846913_6508080823115132301_n.jpg?_nc_ht=scontent.cdninstagram.com",
             "created_time": "1557845538",
             "text": "Radha krishna",
-            "tags":"#Radhe radhe #HariBol",
-            "likes_count":"36",
+            "user_has_liked": true,
+            "likes": {
+              "count": 123
+            },
+            "tags": [
+                "#Radhe radhe #HariBol"
+            ],
+            "comments": {
+              "count": 111
+            },
             "posts":"212",
             "follows":"115",
             "followed_by":"127",
@@ -98,8 +138,16 @@ let testData = [
             "url": "https://scontent.cdninstagram.com/vp/708ddfbb84f254d1aad3f6d3b3027c1e/5D6061A4/t51.2885-15/sh0.08/e35/s640x640/58870401_422288278320229_458568949452515842_n.jpg?_nc_ht=scontent.cdninstagram.com",
             "created_time": "1557845538",
             "text": "Radha krishna",
-            "tags":"#Radhe radhe #HariBol",
-            "likes_count":"56",
+            "user_has_liked": false,
+            "likes": {
+              "count": 113
+            },
+            "tags": [
+              "chandana"
+            ],
+            "comments": {
+              "count": 110
+            },
             "posts":"72",
             "follows":"151",
             "followed_by":"217",
