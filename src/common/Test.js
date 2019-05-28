@@ -8,7 +8,10 @@ let testData = [
             "created_time": "1558627242",
             "text": "Isckon",
             "tags":"#I_Love_Krsna #Hare_Krsna",
-            "likes_count":"3",
+            "user_has_liked": true,
+            "likes": {
+              "count": 10
+            },
             "posts":"2",
             "follows":"5",
             "followed_by":"7",

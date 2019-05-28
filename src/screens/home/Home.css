@@ -12,6 +12,10 @@
     font-size: 18px;
     vertical-align: center;
 }
+.tabs {
+  margin-bottom: 20px;
+}
+
 .flex-container {
   display: flex;
 }
@@ -41,6 +45,15 @@
   display:flex;
   justify-content: center;
   
+}
+.iconColor {
+  color:red;
+}
+.likesFont {
+  font-size: 200px;
+  display:flex;
+  justify-content: flex-start;
+  vertical-align: center;
 }
 
 

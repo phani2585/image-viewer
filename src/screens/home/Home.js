@@ -12,12 +12,13 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
-import hearticon from '../../assets/icon/hearticon.svg';
 import Header from '../../common/header/Header';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import testData from '../../common/Test';
+import hearticon from '../../assets/icon/hearticon.svg';
+//import hearticon_black from '../../assets/icon/hearticon_black.svg';
 
 /*Imported all necessary files and components */
 
@@ -64,6 +65,8 @@ class Home extends Component {
             unixDateTimestamp: [],
             ownerInfo: [],
             mediaInfo: [],
+            isHeartIconSelected :false
+            
 
         }
     }
@@ -75,6 +78,8 @@ class Home extends Component {
                      imageCommentChangehandler() &          
                      addCommentonClickHandler() 
                                 needs to be working */
+
+    
 
     /*Code written to make two API calls as per the definitions provided in problem statement */
 
@@ -131,8 +136,8 @@ class Home extends Component {
                         {testData.map(image => (
 
                             <GridListTile key={"image" + image.id} cols={image.cols || 1}>
-<Grid container className={classes.root} spacing={16}>
-              <Grid item>
+                                <Grid container className={classes.root} spacing={16}>
+                                    <Grid item>
                                     <Card className={classes.card}>
 
                                         <CardHeader 
@@ -149,7 +154,10 @@ class Home extends Component {
                                             <hr />
                                             <Typography variant="caption">{image.text}</Typography>
                                             <Typography>{image.tags}</Typography>
-                                            <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
+                                            <div className="likesFont">
+                                            <Typography variant="h5" >
+                                            <img src={hearticon} alt={"heartlogoTransparent"}   onClick={() => this.iconClickHandler()} />
+                                              {image.likes.count} Likes</Typography></div>
                                             <br /><br />
                                             <FormControl >
                                                 <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
