@@ -5,6 +5,7 @@ import './Home.css';
 import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import Card from '@material-ui/core/Card';
@@ -31,7 +32,8 @@ const styles = theme => ({
     },
     card: {
         maxWidth: '100%',
-
+        margin: '8px',
+        shadow: '20px',
     },
     bigAvatar: {
         margin: 10,
@@ -46,12 +48,10 @@ const styles = theme => ({
     },
     gridListMain: {
         transform: 'translateZ(0)',
-        cursor: 'pointer'
-
-    },
-
-
-
+        cursor: 'pointer',
+        
+        },
+    
 });
 
 /*Class component Home defined with constructor & it's states */
@@ -131,7 +131,8 @@ class Home extends Component {
                         {testData.map(image => (
 
                             <GridListTile key={"image" + image.id} cols={image.cols || 1}>
-
+<Grid container className={classes.root} spacing={16}>
+              <Grid item>
                                     <Card className={classes.card}>
 
                                         <CardHeader 
@@ -159,6 +160,8 @@ class Home extends Component {
 
                                     </Card>
                                     
+                                    </Grid>
+                                    </Grid>
                         </GridListTile>
                          ))};
                          
