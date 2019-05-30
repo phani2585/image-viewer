@@ -1,3 +1,5 @@
+/*This helper file will be DELETED after we implement Date Time Format functionality for created_time field from API response data */
+
 function convert(){
 
     // Unixtimestamp

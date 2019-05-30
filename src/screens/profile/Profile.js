@@ -1,4 +1,4 @@
-/* WORK IN PROGRESS on Profile Page */
+/* WORK IN PROGRESS */
 
 import React, { Component } from 'react';
 import './Profile.css';

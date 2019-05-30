@@ -1,3 +1,6 @@
+/* This file is a duplicate of API 1 response data, ONLY used to compare , NOT called anywhere in OUR CODE */
+/* IMP => Please note this file will be deleted after we access all fields via API response by the end of of the assignment */
+
 let apiData1=[
     {
         "data": {

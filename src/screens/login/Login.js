@@ -1,4 +1,4 @@
-/* WORK IN PROGRESS on Login Page : Routing & Header design left */
+/* WORK IN PROGRESS  */
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';

@@ -1,6 +1,5 @@
-/* MOVE COMMON STYLES IN COMMON.CSS & Plz remove unnecessary properties and attributes */
 
-/* Try to make css definitions uniform as in cardStyle, dispNone versus app-logo col-left */
+/* Try to make css definitions uniform as in cardStyle, dispNone versus app-logo col-left,Remove unnecessary css definitions */
 
 .app-header {
     background-color: #263238;

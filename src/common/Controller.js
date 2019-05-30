@@ -1,9 +1,13 @@
+/*WORK IN PROGRESS */
+
 import React, { Component } from 'react';
-//import ReactDOM from 'react-dom';
 import Login from '../../src/screens/login/Login';
 import Home from '../../src/screens/home/Home';
 import Profile from '../../src/screens/profile/Profile';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+
+/* Base url of Instagram app & routing to all pages defined in Controller class.This file is COMMON for all the pages  */
 
 class Controller extends Component {
 

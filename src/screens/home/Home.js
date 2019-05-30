@@ -1,4 +1,4 @@
-/* Work In Progress on Home Page  */
+/* WORK IN PROGRESS  */
 
 import React, { Component } from 'react';
 import './Home.css';
