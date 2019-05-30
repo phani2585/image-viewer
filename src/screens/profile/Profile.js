@@ -22,7 +22,8 @@ import pencil from '../../assets/icon/pencil.png';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import hearticon from '../../assets/icon/hearticon.svg';
+import hearticon_black from '../../assets/icon/hearticon_black.svg';
+import Grid from '@material-ui/core/Grid';
 
 /*Imported all necessary files and components */
 
@@ -142,13 +143,14 @@ class Profile extends Component {
         let that = this;
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                //console.log(this.responseText);
+                console.log(this.responseText);
                 that.setState({
                     ownerInfo: JSON.parse(this.responseText).data
+
                 });
             }
         })
-        xhr.open("GET", this.url1);
+        xhr.open("GET", this.props.baseUrl + "?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3");
         xhr.send(ownerData);
 
         // Get media info of owner after authenticated by accessToken
@@ -157,14 +159,17 @@ class Profile extends Component {
 
         xhrMediaData.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                console.log(this.responseText);
+                //console.log(this.responseText);
                 that.setState({
                     mediaInfo: JSON.parse(this.responseText).data
+                    //unixDateTimestamp :JSON.parse(this.responseText).data.created_time
+                    
                 });
             }
         })
-        xhrMediaData.open("GET", this.url2);
+        xhrMediaData.open("GET", this.props.baseUrl + "media/recent/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3");
         xhrMediaData.send(mediaData);
+       
     }
 
     /* Rendering JSX elements on the Profile Page as per the design requirements */
@@ -192,19 +197,19 @@ class Profile extends Component {
                             <div className="row1">
                                 <div className="col-left">
                                     {<Avatar className={classes.bigAvatar}>
-                                        <img src={testData[0].profile_picture} alt={"logo"} />
+                                        <img src={this.state.ownerInfo.profile_picture} alt={"logo"} />
                                     </Avatar>}
                                 </div>
 
                                 <div className="col-center">
-                                    <span><div className="row-one">{testData[0].username}</div></span>
+                                    <span><div className="row-one">{this.state.ownerInfo.username}</div></span>
                                     <span><div className="row-two">
-                                        <div className="col-l">Posts : {testData[0].posts}</div>
-                                        <div className="col-c">Follows : {testData[0].follows}</div>
-                                        <div className="col-r">Followed By : {testData[0].followed_by}</div>
+                                    <div className="col-l">Posts : {this.state.ownerInfo.counts.media}</div>
+                                        <div className="col-c">Follows : {this.state.ownerInfo.counts.follows}</div>
+                                        <div className="col-r">Followed By : {this.state.ownerInfo.counts.followed_by}</div>
                                     </div></span>
                                     <div className="row-three">
-                                        {testData[0].full_name}
+                                        {this.state.ownerInfo.full_name}
                                         <Button variant="fab" color="secondary" className="edit-icon-button"><img src={pencil} alt={"pencil-logo"} onClick={this.openEditModalHandler} /></Button>
                                     </div>
                                 </div>
@@ -248,9 +253,9 @@ class Profile extends Component {
 
                 <div className={classes.root}>
                     <GridList cellHeight={300} className={classes.gridList} cols={3}>
-                        {testData.map(image => (
-                            <GridListTile key={image.id} cols={image.cols || 1}>
-                                <img src={image.url} alt={image.text} onClick={this.openImageModalHandler} />
+                        {this.state.mediaInfo.map(image => (
+                            <GridListTile key={"image"+image.id} cols={image.cols || 1}>
+                                <img src={image.images.standard_resolution.url} alt={image.text} onClick={this.openImageModalHandler} />
                             </GridListTile>
                         ))}
                     </GridList>
@@ -262,7 +267,8 @@ class Profile extends Component {
                         onRequestClose={this.closeImageModalHandler}
                         style={customStyles}
                     >
-
+<Grid container className={classes.root} spacing={16}>
+                                    <Grid item>
                         <Card className="cardStyle">
 
                             <div className="row">
@@ -287,7 +293,7 @@ class Profile extends Component {
                                         <Typography variant="caption">{testData[0].full_name}</Typography>
                                         <Typography>#images #description</Typography>
                                         <br /><br />
-                                        <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
+                                        <img src={hearticon_black} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
 
                                         <FormControl >
                                             <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
@@ -301,6 +307,8 @@ class Profile extends Component {
                             </div>
 
                         </Card>
+                        </Grid>
+                        </Grid>
 
                     </Modal>
                     

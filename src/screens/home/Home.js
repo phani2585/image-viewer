@@ -1,4 +1,4 @@
-/* Work In Progress on Home Page : Retrieve info from backend response JSON, Like & Comment functionalities, Display cards as LIST */
+/* Work In Progress on Home Page  */
 
 import React, { Component } from 'react';
 import './Home.css';
@@ -12,12 +12,15 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
-import Header from '../../common/header/Header';
+//import Header from '../../common/header/Header';
 import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
-import testData from '../../common/Test';
 import hearticon from '../../assets/icon/hearticon.svg';
+
+
+
 //import hearticon_black from '../../assets/icon/hearticon_black.svg';
 
 /*Imported all necessary files and components */
@@ -52,8 +55,11 @@ const styles = theme => ({
         cursor: 'pointer',
         
         },
+        
     
 });
+
+
 
 /*Class component Home defined with constructor & it's states */
 
@@ -65,7 +71,10 @@ class Home extends Component {
             unixDateTimestamp: [],
             ownerInfo: [],
             mediaInfo: [],
-            isHeartIconSelected :false
+            isHeartIconSelected :false,
+            imagecomment:"",
+            addComment:"dispComment",
+           
             
 
         }
@@ -74,11 +83,15 @@ class Home extends Component {
 
 
     /* Event  Handler Functions Definitions */
-    /* Functions for iconClickHandler(),
-                     imageCommentChangehandler() &          
-                     addCommentonClickHandler() 
-                                needs to be working */
 
+    imageCommentOnChangeChangeHandler = (e) => {
+        this.setState({imagecomment: e.target.value});
+    }
+
+   addCommentOnClickHandler = (e) => {
+        this.setState({addedComment :this.state.imagecomment});
+       
+}
     
 
     /*Code written to make two API calls as per the definitions provided in problem statement */
@@ -106,34 +119,38 @@ class Home extends Component {
 
         xhrMediaData.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
+                //console.log(this.responseText);
                 that.setState({
-                    mediaInfo: JSON.parse(this.responseText).data,
+                    mediaInfo: JSON.parse(this.responseText).data
                     //unixDateTimestamp :JSON.parse(this.responseText).data.created_time
+                    
                 });
             }
         })
         xhrMediaData.open("GET", this.props.baseUrl + "media/recent/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3");
         xhrMediaData.send(mediaData);
+       
     }
 
     /* Rendering JSX elements on the Login Page as per the design requirements */
 
-    /* Header needs to be edited */
-    /* Various data items have to be accessed from API response as this.state.ownerInfo/mediaInfo in place of testData[0].variable */
-    /* hash Tags have to be in proper format and in Blue colour */
+    /* Inside CARD CONTENT */
+    /* display hash tags and comments only if there are any IMP */
+    /* Caption.text must be displayed */
+    /* hash Tags  colour should be correct and multiple tags must be seperated by space*/
 
 
     render() {
-        const { classes } = this.props;
+        
+        const {classes} = this.props;
 
         return (
             <div>
-                <Header />
-
+            
                 <div className= "cardStyle">
                     <br />
                     <GridList cellHeight={"auto"} className={classes.gridListMain} cols={2}>
-                        {testData.map(image => (
+                        {this.state.mediaInfo.map(image => (
 
                             <GridListTile key={"image" + image.id} cols={image.cols || 1}>
                                 <Grid container className={classes.root} spacing={16}>
@@ -143,27 +160,32 @@ class Home extends Component {
                                         <CardHeader 
                                             avatar={
                                                 <Avatar className={classes.bigAvatar}>
-                                                    <img src={image.profile_picture} alt={"logo"} /></Avatar>
+                                                    <img src={image.user.profile_picture} alt={"logo"} /></Avatar>
                                             }
-                                            title={image.username}
+                                            title={image.user.username}
                                             subheader={image.created_time} />
 
 
                                         <CardContent>
-                                            <img src={image.url} alt={image.text} className="image-properties" />
+                                            <img src={image.images.standard_resolution.url} alt={image.text} className="image-properties" />
                                             <hr />
-                                            <Typography variant="caption">{image.text}</Typography>
-                                            <Typography>{image.tags}</Typography>
+                                            <Typography>{image.text}</Typography>
+                                            <Typography><div className="hash-tags">#{image.tags}</div></Typography>
                                             <div className="likesFont">
                                             <Typography variant="h5" >
-                                            <img src={hearticon} alt={"heartlogoTransparent"}   onClick={() => this.iconClickHandler()} />
+                                            <img src={hearticon} alt={"heartlogoTransparent"}   onClick={() => this.iconClickHandler} />
                                               {image.likes.count} Likes</Typography></div>
                                             <br /><br />
                                             <FormControl >
-                                                <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
-                                                <Input id="imagecomment" type="text" onChange={this.imageCommentChangeHandler} />
+                                            <FormHelperText className={this.state.addComment}><div><Typography>: {this.state.addedComment}</Typography></div></FormHelperText>
                                             </FormControl>
-                                            <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
+                                            <br/>
+                                            <br/>
+                                            <FormControl>
+                                                <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
+                                                <Input id="imagecomment" type="text" onChange={this.imageCommentOnChangeChangeHandler} />
+                                                </FormControl>
+                                            <Button id="addedcomment" variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
                                         </CardContent>
 
                                     </Card>
