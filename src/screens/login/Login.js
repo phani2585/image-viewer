@@ -38,8 +38,10 @@ class Login extends Component {
         let mockPasswordInstagram = "PGDSD@107";
         let accessToken = "13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
 
+        
+
         if (this.state.username === mockUsernameInstagram && this.state.password === mockPasswordInstagram) {
-            window.sessionStorage.setItem("access-token", accessToken);
+            sessionStorage.setItem("access-token", accessToken);
             ReactDOM.render(<Home />, document.getElementById('root')); // Edit  Routing 
         }
 
@@ -68,8 +70,8 @@ class Login extends Component {
             <div>
                 <Header heading="Image Viewer" />
 
-                <div className="cardStyle" >
-                    <Card >
+                <div className="cardStyle">
+                    <Card>
                         <CardContent>
                             <Typography variant="title">LOGIN</Typography>
                             <FormControl required>

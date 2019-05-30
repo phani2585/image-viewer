@@ -104,6 +104,7 @@ class Home extends Component {
         let that = this;
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
+                //console.log(this.responseText);
                 that.setState({
                     ownerInfo: JSON.parse(this.responseText).data
 
@@ -119,7 +120,7 @@ class Home extends Component {
 
         xhrMediaData.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                //console.log(this.responseText);
+                console.log(this.responseText);
                 that.setState({
                     mediaInfo: JSON.parse(this.responseText).data
                     //unixDateTimestamp :JSON.parse(this.responseText).data.created_time
