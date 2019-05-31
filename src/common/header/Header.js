@@ -30,7 +30,7 @@ class Header extends Component {
     }
 
     openMenuHandler = () => {
-        this.setState({ menuIsOpen:true });
+        alert("Profile icon clicked");
     }
 
     myAccountClickHandler = (e) => {
@@ -50,16 +50,11 @@ class Header extends Component {
                 <header className="app-header app-logo">
                   Image Viewer
                   {<Avatar className="avatar">
-                                            <img aria-haspopup={true} aria-controls="simpleMenu" onClick={this.openMenuHandler} src={testData[0].profile_picture} alt={"logo"} /></Avatar>}
-                                            <Menu id="simpleMenu"
-                                            isOpen={this.state.menuIsOpen}
-                                            onRequestClose={this.closeMenuHandler}
+                                            <img  aria-controls="simpleMenu" onClick={this.openMenuHandler} src={testData[0].profile_picture} alt={"logo"} /></Avatar>}
+                                            
                                         
-                                    >
-                                        <MenuItem onClick={this.myAccountClickHandler}>My Account</MenuItem>
-                                        <hr/>
-                                        <MenuItem onClick={this.logOutClickHandler}>Log Out</MenuItem>
-                                        </Menu>
+                                    
+                                        
                 </header>
             </div>
         )

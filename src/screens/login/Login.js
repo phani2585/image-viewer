@@ -1,5 +1,3 @@
-/* WORK IN PROGRESS  */
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './Login.css';
@@ -17,7 +15,7 @@ import Home from '../home/Home';
 /*Class component Login defined with constructor & it's states */
 
 class Login extends Component {
-    
+
     constructor() {
         super();
         this.state = {
@@ -38,17 +36,22 @@ class Login extends Component {
         let mockPasswordInstagram = "PGDSD@107";
         let accessToken = "13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3";
 
-        
-
         if (this.state.username === mockUsernameInstagram && this.state.password === mockPasswordInstagram) {
-            sessionStorage.setItem("access-token", accessToken);
-            ReactDOM.render(<Home />, document.getElementById('root')); // Edit  Routing 
+            window.sessionStorage.setItem("access-token", accessToken);
+            /*this is the history object where the push method available in the history object is used 
+             to redirecting the user to the Home page when a user logins successfully.*/
+            this.props.history.push('/home')
+            ReactDOM.render(<Home />, document.getElementById('root'));
         }
+        else {
+            window.sessionStorage.removeItem("access-token");
+        }
+
 
         this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
         this.state.password === "" ? this.setState({ passwordRequired: "dispBlock" }) : this.setState({ passwordRequired: "dispNone" });
-        
-        (this.state.username !== "") & ( this.state.password !== "" ) & (this.state.username !== mockUsernameInstagram || this.state.password !== mockPasswordInstagram) ? this.setState({ usernamePasswordIncorrect: "dispBlock" }) : this.setState({ usernamePasswordIncorrect: "dispNone" });
+
+        (this.state.username !== "") & (this.state.password !== "") & (this.state.username !== mockUsernameInstagram || this.state.password !== mockPasswordInstagram) ? this.setState({ usernamePasswordIncorrect: "dispBlock" }) : this.setState({ usernamePasswordIncorrect: "dispNone" });
     }
 
     inputUsernameChangeHandler = (e) => {
