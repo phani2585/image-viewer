@@ -10,7 +10,8 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import Home from '../home/Home';
+import Home from '../../screens/home/Home';
+
 
 /*Class component Login defined with constructor & it's states */
 
@@ -30,7 +31,7 @@ class Login extends Component {
 
     /* Event  Handler Functions Definitions */
 
-    loginClickHandler = (e) => {
+    loginClickHandler = () => {
 
         let mockUsernameInstagram = "PGDSD_107";
         let mockPasswordInstagram = "PGDSD@107";
@@ -40,19 +41,16 @@ class Login extends Component {
             window.sessionStorage.setItem("access-token", accessToken);
             /*this is the history object where the push method available in the history object is used 
              to redirecting the user to the Home page when a user logins successfully.*/
-            this.props.history.push('/home')
-            ReactDOM.render(<Home />, document.getElementById('root'));
+            this.props.history.push('/home/');
+            
         }
-        else {
-            window.sessionStorage.removeItem("access-token");
-        }
-
 
         this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
         this.state.password === "" ? this.setState({ passwordRequired: "dispBlock" }) : this.setState({ passwordRequired: "dispNone" });
 
         (this.state.username !== "") & (this.state.password !== "") & (this.state.username !== mockUsernameInstagram || this.state.password !== mockPasswordInstagram) ? this.setState({ usernamePasswordIncorrect: "dispBlock" }) : this.setState({ usernamePasswordIncorrect: "dispNone" });
-    }
+    
+}
 
     inputUsernameChangeHandler = (e) => {
         this.setState({ username: e.target.value })
