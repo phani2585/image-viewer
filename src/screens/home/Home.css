@@ -64,6 +64,9 @@ display:block;
 .comment-username {
   font-display: bold;
 }
+.avatar {
+  float:right;
+}
 
 
 
