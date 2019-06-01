@@ -62,6 +62,8 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
+        height:'70%',
+        width:'60%',
 
     }
 };
@@ -89,7 +91,10 @@ class Profile extends Component {
             fullnameRequired: "dispNone",
             fullname: "",
             ownerInfo: [],
-            mediaInfo: []
+            mediaInfo: [],
+            UpdateFullname:"dispNone",
+            ApiFullName:"dispBlock",
+            full_name:""
         }
     }
 
@@ -100,7 +105,13 @@ class Profile extends Component {
 
         this.state.fullname === "" ? this.setState({ fullnameRequired: "dispBlock" }) : this.setState({ fullnameRequired: "dispNone" });
 
-        this.setState({ fullname: this.state.fullname }); /*Verify if this stmt is rt , after integrating with backend API  VERY IMP*/
+        if (this.state.fullname !== ""){
+            this.setState({full_name: this.state.fullname,
+                 UpdateFullname : "dispBlock",
+                  ApiFullName:"dispNone",
+                  modalIsOpen:false
+            });
+           }
     }
 
     inputFullnameChangeHandler = (e) => {
@@ -180,7 +191,7 @@ class Profile extends Component {
             <div>
 
                 <div>
-                    <Header heading="Image Viewer" />
+                    <Header />
 
                 </div>
 
@@ -205,7 +216,7 @@ class Profile extends Component {
                                         <div className="col-r">Followed By : {testData[0].followed_by}</div>
                                     </div></span>
                                     <div className="row-three">
-                                        {this.state.ownerInfo.full_name}
+                                    <span><div className={this.state.ApiFullName}>{this.state.ownerInfo.full_name}</div><div className={this.state.UpdateFullname}>{this.state.full_name}</div></span>
                                         <Button variant="fab" color="secondary" className="edit-icon-button"><img src={pencil} alt={"pencil-logo"} onClick={this.openEditModalHandler} /></Button>
                                     </div>
                                 </div>
@@ -240,7 +251,7 @@ class Profile extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div class="column-right">
+                        <div className="column-right">
                         </div>
 
                     </div>

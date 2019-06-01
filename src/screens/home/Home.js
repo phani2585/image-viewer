@@ -12,12 +12,13 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
-//import Header from '../../common/header/Header';
+import Header from '../../common/header/Header';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import hearticon from '../../assets/icon/hearticon.svg';
+
 
 
 
@@ -71,6 +72,7 @@ class Home extends Component {
             unixDateTimestamp: [],
             ownerInfo: [],
             mediaInfo: [],
+            anchorEl:null,
             isHeartIconSelected :false,
             imagecomment:"",
             addComment:"dispComment",
@@ -147,7 +149,7 @@ class Home extends Component {
 
         return (
             <div>
-            
+             <Header/>
                 <div className= "cardStyle">
                     <br />
                     <GridList cellHeight={"auto"} className={classes.gridListMain} cols={2}>

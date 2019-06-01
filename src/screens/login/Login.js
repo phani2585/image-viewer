@@ -20,6 +20,7 @@ class Login extends Component {
     constructor() {
         super();
         this.state = {
+            anchorEl:null,
             usernamePasswordIncorrect: "dispNone",
             usernameRequired: "dispNone",
             passwordRequired: "dispNone",
