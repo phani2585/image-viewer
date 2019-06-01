@@ -1,5 +1,5 @@
-/*WORK IN PROGRESS */
-import React, { Component } from 'react';
+import React,{Component} from 'react';
+//import AppSearchBar from '../AppSearchBar';
 import './Header.css'; 
 
 /* Header component class is defined in this file.This file is COMMON for all the pages */
