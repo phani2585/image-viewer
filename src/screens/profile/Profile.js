@@ -1,5 +1,3 @@
-/* WORK IN PROGRESS */
-
 import React, { Component } from 'react';
 import './Profile.css';
 import Button from '@material-ui/core/Button';
@@ -19,12 +17,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import testData from '../../common/Test';
 import Avatar from '@material-ui/core/Avatar';
 import pencil from '../../assets/icon/pencil.png';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
 import hearticon from '../../assets/icon/hearticon.svg';
-
-/*Imported all necessary files and components */
 
 /* Defined classes styles for all relevant imported components */
 
@@ -54,7 +47,7 @@ const styles = theme => ({
 
 });
 
-const customStyles = {
+const customStylesImagePost = {
     content: {
         top: '50%',
         left: '50%',
@@ -62,8 +55,20 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        height:'70%',
-        width:'60%',
+        height: '70%',
+        width: '60%',
+
+    }
+};
+
+const customStylesEditFullName = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
 
     }
 };
@@ -92,31 +97,32 @@ class Profile extends Component {
             fullname: "",
             ownerInfo: [],
             mediaInfo: [],
-            UpdateFullname:"dispNone",
-            ApiFullName:"dispBlock",
-            full_name:""
+            imageDetail: {},
+            UpdateFullname: "dispNone",
+            ApiFullName: "dispBlock",
+            full_name: ""
         }
     }
 
     /* Event  Handler Functions Definitions  */
-    /*updateClickHandler needs to be tested */
 
     updateClickHandler = (e) => {
 
         this.state.fullname === "" ? this.setState({ fullnameRequired: "dispBlock" }) : this.setState({ fullnameRequired: "dispNone" });
 
-        if (this.state.fullname !== ""){
-            this.setState({full_name: this.state.fullname,
-                 UpdateFullname : "dispBlock",
-                  ApiFullName:"dispNone",
-                  modalIsOpen:false
+        if (this.state.fullname !== "") {
+            this.setState({
+                full_name: this.state.fullname,
+                UpdateFullname: "dispBlock",
+                ApiFullName: "dispNone",
+                modalIsOpen: false
             });
-           }
+        }
     }
 
     inputFullnameChangeHandler = (e) => {
         this.setState({ fullname: e.target.value });
-       
+
     }
 
     openEditModalHandler = () => {
@@ -132,7 +138,7 @@ class Profile extends Component {
         this.setState({ modalIsOpen: false });
     }
 
-    openImageModalHandler = () => {
+    openImageModalHandler = (imageId) => {
         this.setState({
             imagemodalIsOpen: true,
         });
@@ -154,7 +160,6 @@ class Profile extends Component {
         let that = this;
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                console.log(this.responseText);
                 that.setState({
                     ownerInfo: JSON.parse(this.responseText).data
                 });
@@ -169,7 +174,6 @@ class Profile extends Component {
 
         xhrMediaData.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                //console.log(this.responseText);
                 that.setState({
                     mediaInfo: JSON.parse(this.responseText).data
                 });
@@ -177,11 +181,13 @@ class Profile extends Component {
         })
         xhrMediaData.open("GET", this.props.baseUrl + "media/recent/?access_token=13521022383.d5e23ae.c9785a17269b494eb996c2cbc490a6f3");
         xhrMediaData.send(mediaData);
-    }
 
-    /* Rendering JSX elements on the Profile Page as per the design requirements */
-    /* Header needs to be right */
-    /* Can improvise info Section */
+        let currentState = this.state;
+        currentState.imageDetail = this.state.mediaInfo.filter((img) => {
+            return img.id === this.props.imageId
+        });
+        this.setState({ currentState });
+    }
 
     render() {
 
@@ -189,10 +195,8 @@ class Profile extends Component {
 
         return (
             <div>
-
                 <div>
                     <Header />
-
                 </div>
 
                 <div className="infoSection">
@@ -211,12 +215,12 @@ class Profile extends Component {
                                 <div className="col-center">
                                     <span><div className="row-one">{this.state.ownerInfo.username}</div></span>
                                     <span><div className="row-two">
-                                    <div className="col-l">Posts : {testData[0].posts}</div>
+                                        <div className="col-l">Posts : {testData[0].posts}</div>
                                         <div className="col-c">Follows : {testData[0].follows}</div>
                                         <div className="col-r">Followed By : {testData[0].followed_by}</div>
                                     </div></span>
                                     <div className="row-three">
-                                    <span><div className={this.state.ApiFullName}>{this.state.ownerInfo.full_name}</div><div className={this.state.UpdateFullname}>{this.state.full_name}</div></span>
+                                        <span><div className={this.state.ApiFullName}>{this.state.ownerInfo.full_name}</div><div className={this.state.UpdateFullname}>{this.state.full_name}</div></span>
                                         <Button variant="fab" color="secondary" className="edit-icon-button"><img src={pencil} alt={"pencil-logo"} onClick={this.openEditModalHandler} /></Button>
                                     </div>
                                 </div>
@@ -226,7 +230,7 @@ class Profile extends Component {
                                         ariaHideApp={false}
                                         isOpen={this.state.modalIsOpen}
                                         onRequestClose={this.closeEditModalHandler}
-                                        style={customStyles}
+                                        style={customStylesEditFullName}
                                     >
                                         <Tabs className="tabs" value={this.state.value} >
                                             <Tab label="Edit" />
@@ -257,11 +261,11 @@ class Profile extends Component {
                     </div>
 
                 </div>
-<br/>
+                <br />
                 <div className={classes.root}>
                     <GridList cellHeight={300} className={classes.gridList} cols={3}>
                         {this.state.mediaInfo.map(image => (
-                            <GridListTile key={"image"+image.id} cols={image.cols || 1}>
+                            <GridListTile key={image.id} cols={image.cols || 1}>
                                 <img src={image.images.standard_resolution.url} alt={image.text} onClick={this.openImageModalHandler} />
                             </GridListTile>
                         ))}
@@ -272,55 +276,48 @@ class Profile extends Component {
                         ariaHideApp={false}
                         isOpen={this.state.imagemodalIsOpen}
                         onRequestClose={this.closeImageModalHandler}
-                        style={customStyles}
+                        style={customStylesImagePost}
                     >
 
-                        <Card className="cardStyle">
+                        <div className="row-card">
 
-                            <div className="row">
-
-                                <div className="column" >
-                                    <img src={testData[0].url} alt={"uploadedpic1"} />
-
-                                </div>
-
-                                <div className="column" >
-
-                                    <CardHeader
-                                        avatar={
-                                            <Avatar className={classes.bigAvatar}>
-                                                <img src={testData[0].profile_picture} alt={"logo"} /></Avatar>
-                                        }
-                                        title={testData[0].username}
-                                    />
-                                    <hr />
-                                    <CardContent className={classes.content}>
-
-                                        <Typography variant="caption">{testData[0].full_name}</Typography>
-                                        <Typography>#images #description</Typography>
-                                        <br /><br />
-                                        <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
-
-                                        <FormControl >
-                                            <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
-                                            <Input id="imagecomment" type="text" onChange={this.imageCommentChangeHandler} />
-                                        </FormControl>
-                                        <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
-                                    </CardContent>
-                                </div>
-
+                            <div className="column-card-left" >
+                                <img src={testData[0].url} alt={"uploadedpic1"} />
 
                             </div>
 
-                        </Card>
+                            <div className="column-card-right" >
+                                <div className="row-card-up">
 
+                                    {
+                                        <Avatar className={classes.bigAvatar}>
+                                            <img src={testData[0].profile_picture} alt={"logo"} /></Avatar>
+                                    }
+                                    {testData[0].username}
+
+                                    <hr />
+
+                                    <Typography variant="caption">{testData[0].full_name}</Typography>
+                                    <Typography>#images #description</Typography>
+                                </div>
+
+                                <br /><br />
+                                <div className="row-card-down">
+                                    <img src={hearticon} alt={"heartlogo"} onClick={() => this.iconClickHandler()} className="iconColor" />
+
+                                    <FormControl >
+                                        <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
+                                        <Input id="imagecomment" type="text" onChange={this.imageCommentChangeHandler} />
+                                    </FormControl>
+                                    <Button variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
+                                </div>
+                            </div>
+                        </div>
                     </Modal>
-                    
-                </div>
-
-                <div className="right">
 
                 </div>
+
+
             </div>
 
         )

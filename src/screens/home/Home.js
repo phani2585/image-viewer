@@ -1,5 +1,3 @@
-/* WORK IN PROGRESS  */
-
 import React, { Component } from 'react';
 import './Home.css';
 import Typography from '@material-ui/core/Typography';
@@ -18,15 +16,6 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import hearticon from '../../assets/icon/hearticon.svg';
-
-
-
-
-//import hearticon_black from '../../assets/icon/hearticon_black.svg';
-
-/*Imported all necessary files and components */
-
-/* Defined classes styles for all relevant imported components */
 
 const styles = theme => ({
     root: {
@@ -55,12 +44,8 @@ const styles = theme => ({
         transform: 'translateZ(0)',
         cursor: 'pointer',
         
-        },
-        
-    
+        },          
 });
-
-
 
 /*Class component Home defined with constructor & it's states */
 
@@ -69,20 +54,13 @@ class Home extends Component {
     constructor() {
         super();
         this.state = {
-            unixDateTimestamp: [],
             ownerInfo: [],
             mediaInfo: [],
             anchorEl:null,
-            isHeartIconSelected :false,
             imagecomment:"",
             addComment:"dispComment",
-           
-            
-
         }
     }
-
-
 
     /* Event  Handler Functions Definitions */
 
@@ -95,7 +73,6 @@ class Home extends Component {
        
 }
     
-
     /*Code written to make two API calls as per the definitions provided in problem statement */
 
     componentWillMount() {
@@ -106,7 +83,6 @@ class Home extends Component {
         let that = this;
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                //console.log(this.responseText);
                 that.setState({
                     ownerInfo: JSON.parse(this.responseText).data
 
@@ -124,9 +100,7 @@ class Home extends Component {
             if (this.readyState === 4) {
                 console.log(this.responseText);
                 that.setState({
-                    mediaInfo: JSON.parse(this.responseText).data
-                    //unixDateTimestamp :JSON.parse(this.responseText).data.created_time
-                    
+                    mediaInfo: JSON.parse(this.responseText).data   
                 });
             }
         })
@@ -136,12 +110,6 @@ class Home extends Component {
     }
 
     /* Rendering JSX elements on the Login Page as per the design requirements */
-
-    /* Inside CARD CONTENT */
-    /* display hash tags and comments only if there are any IMP */
-    /* Caption.text must be displayed */
-    /* hash Tags  colour should be correct and multiple tags must be seperated by space*/
-
 
     render() {
         

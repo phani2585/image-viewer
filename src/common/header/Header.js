@@ -63,7 +63,7 @@ class Header extends Component {
     constructor() {
         super();
         this.state = {
-            menuIsOpen:false,
+            menuIsOpen: false,
             ownerInfo: [],
             loggedIn: sessionStorage.getItem("access-token") == null ? false : true
         }
@@ -71,21 +71,21 @@ class Header extends Component {
     }
 
     profilePageLinkHandler = () => {
-        ReactDOM.render(<Profile/>, document.getElementById('root'));
+        ReactDOM.render(<Profile />, document.getElementById('root'));
     }
 
     logoutHandler = () => {
         sessionStorage.removeItem("access-token");
         this.setState({
-           loggedIn: false
-       });
+            loggedIn: false
+        });
     }
 
     openMenuHandler = () => {
-        this.setState({ 
+        this.setState({
             menuIsOpen: true,
         });
-       
+
     }
 
     closeMenuHandler = () => {
@@ -94,7 +94,7 @@ class Header extends Component {
         });
     }
 
-//Accessing data from backend API 1
+    //Accessing data from backend API 1
     componentWillMount() {
 
         // Get owner info after authenticating the  accessToken generated 
@@ -121,12 +121,12 @@ class Header extends Component {
             <div className={classes.grow}>
                 <AppBar position="static">
                     <Toolbar>
-                        
+
                         <div>
-                        <Typography className={{ color: "app-logo" }} variant="h6" noWrap>Image Viewer</Typography>
+                            <Typography className={{ color: "app-logo" }} variant="h6" noWrap>Image Viewer</Typography>
                         </div>
-                        
-                        
+
+
                         <div className={classes.search}>
                             <div className={classes.searchIcon}>
                                 <SearchIcon />
@@ -141,28 +141,28 @@ class Header extends Component {
                         </div>
                         {<Avatar className="avatar">
                             <img aria-controls="simpleMenu" onClick={this.openMenuHandler} src={this.state.ownerInfo.profile_picture} alt={"logo"} /></Avatar>}
-                            <div>
+                        <div>
                             <Menu
-                            id="menu-appbar"
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                              }}
-                              transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                              }}
-                            open={this.state.menuIsOpen}
-                            onClose={this.closeMenuHandler}
-                            
+                                id="menu-appbar"
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={this.state.menuIsOpen}
+                                onClose={this.closeMenuHandler}
+
                             >
                                 <Link to='/profile'>
-                                <MenuItem >My Account</MenuItem></Link><hr/>
+                                    <MenuItem >My Account</MenuItem></Link><hr />
                                 <Link to='/'>
-                                <MenuItem onClick={this.logoutHandler}>Logout</MenuItem></Link>
+                                    <MenuItem onClick={this.logoutHandler}>Logout</MenuItem></Link>
                             </Menu>
-                            </div>
-                           
+                        </div>
+
                     </Toolbar>
                 </AppBar>
             </div>

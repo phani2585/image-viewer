@@ -1,6 +1,4 @@
 
-/* Try to make css definitions uniform as in cardStyle, dispNone versus app-logo col-left,Remove unnecessary css definitions */
-
 .app-header {
     background-color: #263238;
     height: 36px;
@@ -65,23 +63,8 @@ display:block;
   font-display: bold;
 }
 .avatar {
-  float:right;
-}
-
-/* WORK IN PROGRESS => **CSS Code to be written for Header.css */
-
-.app-header {
-  background-color: #263238;
-  height: 54px;
-  
-}
-.app-logo {
-  color: #fff;
-  font-size: 18px;
-  
-}
-.avatar {
   margin-left: auto;
+  float:right;
 }
 header.MuiPaper-root-17.MuiPaper-elevation4-23.MuiAppBar-root-8.MuiAppBar-positionStatic-12.MuiAppBar-colorPrimary-15 {
   background-color: #263238;

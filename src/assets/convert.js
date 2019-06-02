@@ -1,10 +1,7 @@
-/*This helper file will be DELETED after we implement Date Time Format functionality for created_time field from API response data */
+/*This helper function is used to convert unixtimestamp to datetime format */
 
-function convert(){
+function convert(unixtimestamp ){
 
-    // Unixtimestamp
-    var unixtimestamp = document.getElementById('timestamp').value;
-   
     // Months array
     var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
    
@@ -32,6 +29,10 @@ function convert(){
     // Display date time in MM-dd-yyyy h:m:s format
     var convdataTime = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
     
-    document.getElementById('datetime').innerHTML = convdataTime;
+    return convdataTime;
     
    }
+
+   var datetime=convert(1558627242);
+   console.log(datetime);
+   

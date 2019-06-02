@@ -1,5 +1,4 @@
 /* Sample data stored in this file & used to access certain fields which are inaccessible through API especially in Profile page */
-/* IMP => Please note this file will be deleted after we access all fields via API response by the end of of the assignment */
 
 let testData = [
     
